@@ -56,24 +56,25 @@
             <div class="row g-4">
                 <div class="col-lg-6 col-12" data-aos="fade-right" data-aos-delay="200">
                     <div class="img">
-                        <img src="{{ asset($project['image']) }}" alt="portfolio">
+                        <img src="{{ asset($project['image']) }}" alt="{{ $project->name }}">
                     </div>
                 </div>
+                @foreach($project->images as $key=>$image)
+                @if($key % 2 == 0)
                 <div class="col-lg-6 col-12" data-aos="fade-left" data-aos-delay="200">
                     <div class="img">
-                        <img src="images/portfolio/2.jpg" alt="portfolio">
+                        <img src="{{ asset('storage/' . $image->path) }}" alt="{{ $project->name }}">
                     </div>
                 </div>
+                @else
                 <div class="col-lg-6 col-12" data-aos="fade-right" data-aos-delay="300">
                     <div class="img">
-                        <img src="images/portfolio/3.png" alt="portfolio">
+                        <img src="{{ asset('storage/' . $image->path) }}" alt="{{ $project->name }}">
                     </div>
                 </div>
-                <div class="col-lg-6 col-12" data-aos="fade-left" data-aos-delay="300">
-                    <div class="img">
-                        <img src="images/portfolio/1.jpg" alt="portfolio">
-                    </div>
-                </div>
+                @endif
+                @endforeach
+                
             </div>
         </div>
     </div>

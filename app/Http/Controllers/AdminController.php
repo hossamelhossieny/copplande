@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use App\Models\Project;
+use App\Models\ProjectImage;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -93,6 +94,7 @@ class AdminController extends Controller
     public function indexProjects(Service $service)
     {
         $projects = $service->projects()->get();
+        
         return view('admin.projects.index', compact('service', 'projects'));
     }
 
@@ -164,5 +166,36 @@ class AdminController extends Controller
     {
         $project->delete();
         return redirect()->route('admin.projects.index', $service)->with('success', 'Project deleted successfully.');
+    }
+
+    public function addImages(Request $request, Project $project)
+    {
+        $request->validate([
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('project_images', 'public');
+                ProjectImage::create([
+                    'project_id' => $project->id,
+                    'path' => $path,
+                ]);
+            }
+        }
+
+        return redirect()->back()->with('success', 'Images added successfully.');
+    }
+
+    public function editImages(Project $project)
+    {
+        $images = $project->images;
+        return view('admin.projects.edit_images', compact('project', 'images'));
+    }
+
+    public function deleteImage(Project $project, ProjectImage $image)
+    {
+        $image->delete();
+        return redirect()->back()->with('success', 'Image deleted successfully.');
     }
 }

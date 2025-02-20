@@ -10,7 +10,7 @@
             <tr>
                 <th>Title</th>
                 <th>Description</th>
-                <th>Image</th>
+                <th>Images</th>
                 <th>Client</th>
                 <th>Delivery Date</th>
                 <th>Delivery Duration</th>
@@ -26,7 +26,11 @@
                 <tr>
                     <td>{{ $project->$title }}</td>
                     <td>{{ $project->$desc }}</td>
-                    <td><img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title_en }}" width="100"></td>
+                    <td>
+                        @foreach($project->images as $image)
+                            <img src="{{ asset('storage/' . $image->path) }}" alt="{{ $project->title_en }}" width="100">
+                        @endforeach
+                    </td>
                     <td>{{ $project->client }}</td>
                     <td>{{ $project->delivery_date }}</td>
                     <td>{{ $project->delivery_duration }} days</td>
@@ -37,6 +41,8 @@
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
+                        <a href="{{ route('admin.projects.images.add', $project->id) }}" class="btn btn-success">Add Images</a>
+                        <a href="{{ route('admin.projects.images.edit', $project->id) }}" class="btn btn-info">Edit Images</a>
                     </td>
                 </tr>
             @empty

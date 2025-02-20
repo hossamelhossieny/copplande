@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\Service;
+use App\Models\ProjectImage;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,13 +35,12 @@ class HomeController extends Controller
         return view('website.service',$arr);
     }
     public function projects(){
-        $arr['projects'] = Project::with('service')->get();
+        $arr['projects'] = Project::with(['service', 'images'])->get();
         return view('website.projects',$arr);
     }
     public function one_project($id){
-        $arr['project'] = Project::with('service')->where('id',$id)->first();
-        //dd($arr['project']);
-        return view('website.project',$arr);
+        $arr['project'] = Project::with(['service', 'images'])->where('id', $id)->first();
+        return view('website.project', $arr);
     }
     public function contactus(){
         return view('website.contactus');
