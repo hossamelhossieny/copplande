@@ -18,9 +18,11 @@ class HomeController extends Controller
     }
 
     public function about(){
+
         return view('website.about');
     }
     public function team(){
+        
         return view('website.team');
     }
     public function services(){
