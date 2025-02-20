@@ -21,10 +21,12 @@ class HomeController extends Controller
         return view('website.about');
     }
     public function team(){
+        
         return view('website.team');
     }
     public function services(){
         $arr['services'] = Service::all();
+
         return view('website.services',$arr);
     }
     public function one_service($id){
