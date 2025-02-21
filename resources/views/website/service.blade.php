@@ -81,17 +81,12 @@
     
     <div class="row my-2 gx-4 gy-4">
       @foreach ($service['projects'] as $project)
-      <div class="col-lg-6 col-12" data-aos="fade-right" data-aos-delay="150">
-        <div class="bg-box p-4">
-          <img src="images/blog/1.jpg" alt="blog">
-          <div class="d-flex justify-content-between my-2">
-            <h4>by ahmad errami</h4>
-            <h4>05/06/2023</h4>
+          <div class="col-lg-6 col-12" data-aos="fade-up" data-aos-delay="150">
+            <div class="bg-box p-4">
+              <img src="{{ asset($project['images'][0]['path']) }}" alt="{{ $project['title_'.app()->getLocale()] }}" title="{{ $project['title_'.app()->getLocale()] }}" class="img-fluid">
+              <h2 class="sub-title m-3 mt-4"><a href="{{ route('one.project',$project['id']) }}">{{ $project['title_'.app()->getLocale()] }}</a></h2>
+            </div>
           </div>
-          <h2 class="blog-title my-4">10 Must-Have Tools for Every IT Professional</h2>
-          <a href="blog-single.html" class="learn-more my-2"><i class="bi bi-arrow-left"></i> {{ __('more') }}</a>
-        </div>
-      </div>
       @endforeach
     </div>
   </div>

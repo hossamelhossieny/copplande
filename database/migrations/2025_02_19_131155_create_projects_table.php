@@ -18,7 +18,6 @@ return new class extends Migration
             $table->text('desc_en');
             $table->string('title_ar');
             $table->text('desc_ar');
-            $table->string('image');
             $table->string('client');
             $table->date('delivery_date');
             $table->integer('delivery_duration');

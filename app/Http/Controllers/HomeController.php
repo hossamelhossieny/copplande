@@ -31,11 +31,12 @@ class HomeController extends Controller
         return view('website.services',$arr);
     }
     public function one_service($id){
-        $arr['service'] = Service::where('id',$id)->with(['subServices','projects'])->first();
+        $arr['service'] = Service::where('id',$id)->with(['subServices','projects.images'])->first();
         return view('website.service',$arr);
     }
     public function projects(){
-        $arr['projects'] = Project::with(['service', 'images'])->get();
+        $arr['projects'] = Project::with(['service'])->get();
+        
         return view('website.projects',$arr);
     }
     public function one_project($id){

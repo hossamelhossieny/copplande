@@ -6,7 +6,9 @@
     <div class="container">
         <div class="row justify-content-center align-items-center gx-4 gy-4 pt-4 mt-4">
             <div class="col-lg-7 col-12">
-                <h2 class="sub-title my-3" data-aos="fade-up" data-aos-delay="150">about the project</h2>
+                <h2 class="title" data-aos="fade-right" data-aos-delay="100">about the project</h2>
+                <h2 class="sub-title my-3" data-aos="fade-up" data-aos-delay="150">{{ $project['title_'.app()->getLocale()] }}</h2>
+                
                 <p data-aos="fade-up" data-aos-delay="200">
                     {{ $project['desc_'.app()->getLocale()] }}
                 </p>
@@ -47,32 +49,15 @@
         <div class="pt-4 mt-4">
             <div class="my-4 py-2">
                 <h2 class="title" data-aos="fade-right" data-aos-delay="100">project screenshots</h2>
-                <p class="col-lg-8 col-12" data-aos="fade-up" data-aos-delay="150">
-                    committed to delivering excellence and driving your business towards
-                    unparalleled efficiency and growth. Elevate your technology experience – choose itran for IT
-                    solutions that transcend expectations.
-                </p>
             </div>
             <div class="row g-4">
-                <div class="col-lg-6 col-12" data-aos="fade-right" data-aos-delay="200">
-                    <div class="img">
-                        <img src="{{ asset($project['image']) }}" alt="{{ $project->name }}">
-                    </div>
-                </div>
                 @foreach($project->images as $key=>$image)
-                @if($key % 2 == 0)
-                <div class="col-lg-6 col-12" data-aos="fade-left" data-aos-delay="200">
+                <div class="col-lg-4 col-12" data-aos="fade-up" data-aos-delay="200">
                     <div class="img">
-                        <img src="{{ asset('storage/' . $image->path) }}" alt="{{ $project->name }}">
+                        <img src="{{ asset('storage/' . $image->path) }}" alt="{{ $project->name }}" title="{{ $project->name }}" class="img-fluid">
                     </div>
                 </div>
-                @else
-                <div class="col-lg-6 col-12" data-aos="fade-right" data-aos-delay="300">
-                    <div class="img">
-                        <img src="{{ asset('storage/' . $image->path) }}" alt="{{ $project->name }}">
-                    </div>
-                </div>
-                @endif
+                
                 @endforeach
                 
             </div>

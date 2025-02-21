@@ -41,8 +41,8 @@
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
-                        <a href="{{ route('admin.projects.images.add', $project->id) }}" class="btn btn-success">Add Images</a>
-                        <a href="{{ route('admin.projects.images.edit', $project->id) }}" class="btn btn-info">Edit Images</a>
+                        {{-- <a href="{{ route('admin.projects.images.add', $project->id) }}" class="btn btn-success">Add Images</a> --}}
+                        <a href="{{ route('admin.projects.images.edit', $project->id) }}" class="btn btn-info">add/edit Images</a>
                     </td>
                 </tr>
             @empty

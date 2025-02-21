@@ -14,7 +14,6 @@ class Service extends Model
         'desc_en',
         'title_ar',
         'desc_ar',
-        'image',
         'banner',
     ];
 

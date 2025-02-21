@@ -111,20 +111,17 @@ class AdminController extends Controller
             'desc_en' => 'required',
             'title_ar' => 'required',
             'desc_ar' => 'required',
-            'image' => 'required|image',
             'client' => 'required',
             'delivery_date' => 'required|date',
             'delivery_duration' => 'required|integer',
         ]);
 
-        $imagePath = $request->file('image')->store('projects', 'public');
 
         $service->projects()->create([
             'title_en' => $request->title_en,
             'desc_en' => $request->desc_en,
             'title_ar' => $request->title_ar,
             'desc_ar' => $request->desc_ar,
-            'image' => $imagePath,
             'client' => $request->client,
             'delivery_date' => $request->delivery_date,
             'delivery_duration' => $request->delivery_duration,
@@ -145,18 +142,12 @@ class AdminController extends Controller
             'desc_en' => 'required',
             'title_ar' => 'required',
             'desc_ar' => 'required',
-            'image' => 'nullable|image',
             'client' => 'required',
             'delivery_date' => 'required|date',
             'delivery_duration' => 'required|integer',
         ]);
 
         $data = $request->only('title_en', 'desc_en', 'title_ar', 'desc_ar', 'client', 'delivery_date', 'delivery_duration');
-
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('projects', 'public');
-            $data['image'] = $imagePath;
-        }
 
         $project->update($data);
 
