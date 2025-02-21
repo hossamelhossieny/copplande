@@ -48,6 +48,12 @@
                 </a>
             </li>
             <li class="menu-item">
+                <a href="{{ route('admin.users.index') }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                    <div data-i18n="Dashboard">PlatForm Users</div>
+                    </a>
+            </li>
+            <li class="menu-item">
                 <a href="{{ route('admin.services.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-smart-home"></i>
                     <div data-i18n="Dashboard">PlatForm Service</div>
