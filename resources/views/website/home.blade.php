@@ -78,7 +78,7 @@
                     <div class="col-lg-6 col-12 d-flex flex-column align-items-end justify-content-end">
                         <h1 class="service-title my-4" data-aos="fade-up" data-aos-delay="150">{{ $service['title_'.app()->getLocale()] }}</h1>
                         <p class="col-11" data-aos="fade-up" data-aos-delay="200">{{ $service['desc_'.app()->getLocale()] }}</p>
-                        <a href="{{ route('one.service',$service['id']) }}" class="btn my-2" data-aos="fade-up" data-aos-delay="250">{{ __('more') }}</a>
+                        <a href="{{ route('one.service',$service['id']) }}" class="btn my-2" data-aos="fade-up" data-aos-delay="250"><i class="bi bi-arrow-left"></i> {{ __('more') }}</a>
                     </div>
                     <div class="col-lg-6 col-12" data-aos="fade-left" data-aos-delay="100">
                         <img src="{{ asset($service->image) }}" class="img-fluid" alt="{{ $service['desc_'.app()->getLocale()] }}" title="{{ $service['desc_'.app()->getLocale()] }}">
@@ -92,14 +92,11 @@
                 <div class="col-lg-6 col-12 d-flex flex-column align-items-end justify-content-end">
                     <h1 class="service-title my-4" data-aos="fade-up" data-aos-delay="150">{{ $service['title_'.app()->getLocale()] }}</h1>
                     <p class="col-11" data-aos="fade-up" data-aos-delay="200">{{ $service['desc_'.app()->getLocale()] }}</p>
-                    <a href="#" class="btn my-2" data-aos="fade-up" data-aos-delay="250">{{ __('more') }}</a>
+                    <a href="#" class="btn my-2" data-aos="fade-up" data-aos-delay="250"><i class="bi bi-arrow-left"></i> {{ __('more') }}</a>
                 </div>
             </div>
-
-
             @endif
             @endforeach
-
 
         </div>
     </div>

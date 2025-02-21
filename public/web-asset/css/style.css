@@ -1,4 +1,3 @@
-/* ====================================================*/
 /* start global classes */
 :root {
 
@@ -105,8 +104,8 @@ html {
 }
 
 .title {
-  color: var(--primary-text-color);
-  font-size: 55px;
+  color: var(--brand-color);
+  font-size: 40px;
   text-transform: capitalize;
   font-weight: bold;
   position: relative;
@@ -222,7 +221,7 @@ a:focus {
 
 p {
   color: var(--secendary-text-color);
-  font-size: 16px;
+  font-size: 22px;
   line-height: 32px;
   font-weight: 300;
 }
@@ -409,7 +408,7 @@ img {
 
 /*============== Start Services section ==========*/
 .services .service-title {
-  font-size: 50px;
+  font-size: 30px;
   color: var(--primary-text-color);
   font-weight: bold;
   position: relative;
@@ -419,7 +418,7 @@ img {
 .services .service-title::before {
   position: absolute;
   content: "";
-  top: 4rem;
+  top: 2.5rem;
   background-color: var(--brand-color);
   width: 60px;
   height: 7px;
@@ -534,7 +533,7 @@ img {
 /*============== start blog-single section ==========*/
 
 .blog-single img {
-  height: 650px;
+  height: 200px;
 }
 
 .blog-single h4 {

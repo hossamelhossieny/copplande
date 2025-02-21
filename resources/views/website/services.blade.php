@@ -37,24 +37,16 @@
             <div class="col-lg-6 col-12" data-aos="fade-right" data-aos-delay="150">
                 <div class="bg-box d-flex flex-column justify-content-end align-items-end p-4">
                     <img src="{{ asset($service['image']) }}" alt="blog">
-                    <div class="d-flex justify-content-between my-2 w-100">
-                        <h4>{{ $service['title_'.app()->getLocale()] }}</h4>
-                        <h4>{{ date('d/m/Y') }}</h4>
-                    </div>
-                    <h2 class="blog-title my-4">{{ substr($service['desc_'.app()->getLocale()],0,27) }} ...</h2>
-                    <a href="{{ route('one.service',$service['id']) }}" class="learn-more my-2"><i class="bi bi-arrow-left"></i>المزيد</a>
+                    <h2 class="blog-title my-4">{{ $service['title_'.app()->getLocale()] }}</h2>
+                    <a href="{{ route('one.service',$service['id']) }}" class="learn-more my-2"><i class="bi bi-arrow-left"></i> {{ __('more') }}</a>
                 </div>
             </div>
             @else
             <div class="col-lg-6 col-12" data-aos="fade-left" data-aos-delay="200">
                 <div class="bg-box d-flex flex-column justify-content-end align-items-end p-4">
                     <img src="{{ asset('web-asset/images/blog/2.jpg') }}" alt="blog">
-                    <div class="d-flex justify-content-between w-100 my-2">
-                        <h4>{{ $service['title_'.app()->getLocale()] }}</h4>
-                        <h4>{{ date('d/m/Y') }}</h4>
-                    </div>
-                    <h2 class="blog-title my-4">{{ substr($service['desc_'.app()->getLocale()],0,27) }} ...</h2>
-                    <a href="{{ route('one.service',$service['id']) }}" class="learn-more my-2"><i class="bi bi-arrow-left"></i>المزيد</a>
+                    <h2 class="blog-title my-4">{{ $service['title_'.app()->getLocale()] }}</h2>
+                    <a href="{{ route('one.service',$service['id']) }}" class="learn-more my-2"><i class="bi bi-arrow-left"></i> {{ __('more') }}</a>
                 </div>
             </div>
             @endif

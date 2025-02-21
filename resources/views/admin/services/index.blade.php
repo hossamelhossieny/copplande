@@ -11,19 +11,25 @@
                 <th>Title</th>
                 <th>Description</th>
                 <th>Image</th>
+                <th>Banner</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($services as $service)
-            @php
-                $title = "title_".app()->getLocale();
-                $desc = "desc_".app()->getLocale();
-            @endphp
+            @forelse($services as $service)
                 <tr>
-                    <td>{{ $service->$title }}</td>
-                    <td>{{ $service->$desc }}</td>
-                    <td><img src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->title }}" width="100"></td>
+                    <td>{{ $service->title_en }}</td>
+                    <td>{{ $service->desc_en }}</td>
+                    <td>
+                        @if($service->image)
+                            <img src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->title_en }}" width="100">
+                        @endif
+                    </td>
+                    <td>
+                        @if($service->banner)
+                            <img src="{{ asset('storage/' . $service->banner) }}" alt="{{ $service->title_en }}" width="100">
+                        @endif
+                    </td>
                     <td>
                         <a href="{{ route('admin.services.edit', $service) }}" class="btn btn-warning">Edit</a>
                         <form action="{{ route('admin.services.destroy', $service) }}" method="POST" style="display:inline;">
@@ -31,11 +37,15 @@
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
-                        <a href="{{ route('admin.projects.create', $service) }}" class="btn btn-success">Add Project</a>
-                        <a href="{{ route('admin.projects.index', $service) }}" class="btn btn-info">View Projects</a>
+                        <a href="{{ route('admin.sub-services.index', $service) }}" class="btn btn-info">Manage SubServices</a>
+                        <a href="{{ route('admin.projects.index', $service) }}" class="btn btn-success">Manage Projects</a>
                     </td>
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td colspan="5">No services found.</td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 </div>

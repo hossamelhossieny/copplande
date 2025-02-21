@@ -31,7 +31,7 @@ class HomeController extends Controller
         return view('website.services',$arr);
     }
     public function one_service($id){
-        $arr['service'] = Service::find($id);
+        $arr['service'] = Service::where('id',$id)->with(['subServices','projects'])->first();
         return view('website.service',$arr);
     }
     public function projects(){

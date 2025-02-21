@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Service;
 use App\Models\Project;
 use App\Models\ProjectImage;
+use App\Models\SubService;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -197,5 +198,72 @@ class AdminController extends Controller
     {
         $image->delete();
         return redirect()->back()->with('success', 'Image deleted successfully.');
+    }
+
+    // SubServices methods
+    public function indexSubServices(Service $service)
+    {
+        $subServices = $service->subServices()->get();
+        return view('admin.sub_services.index', compact('service', 'subServices'));
+    }
+
+    public function createSubService(Service $service)
+    {
+        return view('admin.sub_services.create', compact('service'));
+    }
+
+    public function storeSubService(Request $request, Service $service)
+    {
+        $request->validate([
+            'title_en' => 'required',
+            'desc_en' => 'required',
+            'title_ar' => 'required',
+            'desc_ar' => 'required',
+            'image' => 'nullable|image',
+        ]);
+
+        $data = $request->only('title_en', 'desc_en', 'title_ar', 'desc_ar');
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('sub_services', 'public');
+            $data['image'] = $imagePath;
+        }
+
+        $service->subServices()->create($data);
+
+        return redirect()->route('admin.sub-services.index', $service)->with('success', 'SubService created successfully.');
+    }
+
+    public function editSubService(Service $service, SubService $subService)
+    {
+        return view('admin.sub_services.edit', compact('service', 'subService'));
+    }
+
+    public function updateSubService(Request $request, Service $service, SubService $subService)
+    {
+        $request->validate([
+            'title_en' => 'required',
+            'desc_en' => 'required',
+            'title_ar' => 'required',
+            'desc_ar' => 'required',
+            'image' => 'nullable|image',
+        ]);
+
+        $data = $request->only('title_en', 'desc_en', 'title_ar', 'desc_ar');
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('sub_services', 'public');
+            $data['image'] = $imagePath;
+        }
+
+        $subService->update($data);
+
+        return redirect()->route('admin.sub-services.index', $service)->with('success', 'SubService updated successfully.');
+    }
+
+    public function destroySubService(Service $service, SubService $subService)
+    {
+        $subService->delete();
+        return redirect()->route('admin.sub-services.index', $service)->with('success', 'SubService deleted successfully.');
     }
 }

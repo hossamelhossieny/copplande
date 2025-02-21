@@ -75,5 +75,12 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::post('projects/{project}/images', [AdminController::class, 'addImages'])->name('projects.images.add');
     Route::get('projects/{project}/images/edit', [AdminController::class, 'editImages'])->name('projects.images.edit');
     Route::delete('projects/{project}/images/{image}', [AdminController::class, 'deleteImage'])->name('projects.images.delete');
+
+    Route::get('services/{service}/sub-services', [AdminController::class, 'indexSubServices'])->name('sub-services.index');
+    Route::get('services/{service}/sub-services/create', [AdminController::class, 'createSubService'])->name('sub-services.create');
+    Route::post('services/{service}/sub-services', [AdminController::class, 'storeSubService'])->name('sub-services.store');
+    Route::get('services/{service}/sub-services/{subService}/edit', [AdminController::class, 'editSubService'])->name('sub-services.edit');
+    Route::put('services/{service}/sub-services/{subService}', [AdminController::class, 'updateSubService'])->name('sub-services.update');
+    Route::delete('services/{service}/sub-services/{subService}', [AdminController::class, 'destroySubService'])->name('sub-services.destroy');
 });
 
