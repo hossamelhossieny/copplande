@@ -57,22 +57,37 @@ Route::middleware('auth')->group(function(){
     });
 });
 
-Route::prefix('admin')->middleware('auth')->group(function () {
-    Route::get('services', [AdminController::class, 'indexServices'])->name('admin.services.index');
-    Route::get('services/create', [AdminController::class, 'createService'])->name('admin.services.create');
-    Route::post('services', [AdminController::class, 'storeService'])->name('admin.services.store');
-    Route::get('services/{service}/edit', [AdminController::class, 'editService'])->name('admin.services.edit');
-    Route::put('services/{service}', [AdminController::class, 'updateService'])->name('admin.services.update');
-    Route::delete('services/{service}', [AdminController::class, 'destroyService'])->name('admin.services.destroy');
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+    Route::get('services', [AdminController::class, 'indexServices'])->name('services.index');
+    Route::get('services/create', [AdminController::class, 'createService'])->name('services.create');
+    Route::post('services', [AdminController::class, 'storeService'])->name('services.store');
+    Route::get('services/{service}/edit', [AdminController::class, 'editService'])->name('services.edit');
+    Route::put('services/{service}', [AdminController::class, 'updateService'])->name('services.update');
+    Route::delete('services/{service}', [AdminController::class, 'destroyService'])->name('services.destroy');
 
-    // Projects routes
-    Route::get('services/{service}/projects', [AdminController::class, 'indexProjects'])->name('admin.projects.index');
-    Route::get('services/{service}/projects/create', [AdminController::class, 'createProject'])->name('admin.projects.create');
-    Route::post('services/{service}/projects', [AdminController::class, 'storeProject'])->name('admin.projects.store');
-    Route::get('services/{service}/projects/{project}/edit', [AdminController::class, 'editProject'])->name('admin.projects.edit');
-    Route::put('services/{service}/projects/{project}', [AdminController::class, 'updateProject'])->name('admin.projects.update');
-    Route::delete('services/{service}/projects/{project}', [AdminController::class, 'destroyProject'])->name('admin.projects.destroy');
+    Route::get('services/{service}/projects', [AdminController::class, 'indexProjects'])->name('projects.index');
+    Route::get('services/{service}/projects/create', [AdminController::class, 'createProject'])->name('projects.create');
+    Route::post('services/{service}/projects', [AdminController::class, 'storeProject'])->name('projects.store');
+    Route::get('services/{service}/projects/{project}/edit', [AdminController::class, 'editProject'])->name('projects.edit');
+    Route::put('services/{service}/projects/{project}', [AdminController::class, 'updateProject'])->name('projects.update');
+    Route::delete('services/{service}/projects/{project}', [AdminController::class, 'destroyProject'])->name('projects.destroy');
 
-    // Repeat similar routes for Team, Projects, AboutUs, and SiteInfo
+    Route::post('projects/{project}/images', [AdminController::class, 'addImages'])->name('projects.images.add');
+    Route::get('projects/{project}/images/edit', [AdminController::class, 'editImages'])->name('projects.images.edit');
+    Route::delete('projects/{project}/images/{image}', [AdminController::class, 'deleteImage'])->name('projects.images.delete');
+
+    Route::get('services/{service}/sub-services', [AdminController::class, 'indexSubServices'])->name('sub-services.index');
+    Route::get('services/{service}/sub-services/create', [AdminController::class, 'createSubService'])->name('sub-services.create');
+    Route::post('services/{service}/sub-services', [AdminController::class, 'storeSubService'])->name('sub-services.store');
+    Route::get('services/{service}/sub-services/{subService}/edit', [AdminController::class, 'editSubService'])->name('sub-services.edit');
+    Route::put('services/{service}/sub-services/{subService}', [AdminController::class, 'updateSubService'])->name('sub-services.update');
+    Route::delete('services/{service}/sub-services/{subService}', [AdminController::class, 'destroySubService'])->name('sub-services.destroy');
+
+    Route::get('users', [AdminController::class, 'indexUsers'])->name('users.index');
+    Route::get('users/create', [AdminController::class, 'createUser'])->name('users.create');
+    Route::post('users', [AdminController::class, 'storeUser'])->name('users.store');
+    Route::get('users/{user}/edit', [AdminController::class, 'editUser'])->name('users.edit');
+    Route::put('users/{user}', [AdminController::class, 'updateUser'])->name('users.update');
+    Route::delete('users/{user}', [AdminController::class, 'destroyUser'])->name('users.destroy');
 });
 

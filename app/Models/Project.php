@@ -15,7 +15,6 @@ class Project extends Model
         'desc_en',
         'title_ar',
         'desc_ar',
-        'image',
         'client',
         'delivery_date',
         'delivery_duration',
@@ -24,5 +23,10 @@ class Project extends Model
     public function service()
     {
         return $this->belongsTo(Service::class);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(ProjectImage::class);
     }
 }

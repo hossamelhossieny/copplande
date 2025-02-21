@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use App\Models\Project;
+use App\Models\ProjectImage;
+use App\Models\SubService;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -93,6 +97,7 @@ class AdminController extends Controller
     public function indexProjects(Service $service)
     {
         $projects = $service->projects()->get();
+        
         return view('admin.projects.index', compact('service', 'projects'));
     }
 
@@ -108,20 +113,17 @@ class AdminController extends Controller
             'desc_en' => 'required',
             'title_ar' => 'required',
             'desc_ar' => 'required',
-            'image' => 'required|image',
             'client' => 'required',
             'delivery_date' => 'required|date',
             'delivery_duration' => 'required|integer',
         ]);
 
-        $imagePath = $request->file('image')->store('projects', 'public');
 
         $service->projects()->create([
             'title_en' => $request->title_en,
             'desc_en' => $request->desc_en,
             'title_ar' => $request->title_ar,
             'desc_ar' => $request->desc_ar,
-            'image' => $imagePath,
             'client' => $request->client,
             'delivery_date' => $request->delivery_date,
             'delivery_duration' => $request->delivery_duration,
@@ -142,18 +144,12 @@ class AdminController extends Controller
             'desc_en' => 'required',
             'title_ar' => 'required',
             'desc_ar' => 'required',
-            'image' => 'nullable|image',
             'client' => 'required',
             'delivery_date' => 'required|date',
             'delivery_duration' => 'required|integer',
         ]);
 
         $data = $request->only('title_en', 'desc_en', 'title_ar', 'desc_ar', 'client', 'delivery_date', 'delivery_duration');
-
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('projects', 'public');
-            $data['image'] = $imagePath;
-        }
 
         $project->update($data);
 
@@ -164,5 +160,177 @@ class AdminController extends Controller
     {
         $project->delete();
         return redirect()->route('admin.projects.index', $service)->with('success', 'Project deleted successfully.');
+    }
+
+    public function addImages(Request $request, Project $project)
+    {
+        $request->validate([
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('project_images', 'public');
+                ProjectImage::create([
+                    'project_id' => $project->id,
+                    'path' => $path,
+                ]);
+            }
+        }
+
+        return redirect()->back()->with('success', 'Images added successfully.');
+    }
+
+    public function editImages(Project $project)
+    {
+        $images = $project->images;
+        return view('admin.projects.edit_images', compact('project', 'images'));
+    }
+
+    public function deleteImage(Project $project, ProjectImage $image)
+    {
+        $image->delete();
+        return redirect()->back()->with('success', 'Image deleted successfully.');
+    }
+
+    // SubServices methods
+    public function indexSubServices(Service $service)
+    {
+        $subServices = $service->subServices()->get();
+        return view('admin.sub_services.index', compact('service', 'subServices'));
+    }
+
+    public function createSubService(Service $service)
+    {
+        return view('admin.sub_services.create', compact('service'));
+    }
+
+    public function storeSubService(Request $request, Service $service)
+    {
+        $request->validate([
+            'title_en' => 'required',
+            'desc_en' => 'required',
+            'title_ar' => 'required',
+            'desc_ar' => 'required',
+            'image' => 'nullable|image',
+        ]);
+
+        $data = $request->only('title_en', 'desc_en', 'title_ar', 'desc_ar');
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('sub_services', 'public');
+            $data['image'] = $imagePath;
+        }
+
+        $service->subServices()->create($data);
+
+        return redirect()->route('admin.sub-services.index', $service)->with('success', 'SubService created successfully.');
+    }
+
+    public function editSubService(Service $service, SubService $subService)
+    {
+        return view('admin.sub_services.edit', compact('service', 'subService'));
+    }
+
+    public function updateSubService(Request $request, Service $service, SubService $subService)
+    {
+        $request->validate([
+            'title_en' => 'required',
+            'desc_en' => 'required',
+            'title_ar' => 'required',
+            'desc_ar' => 'required',
+            'image' => 'nullable|image',
+        ]);
+
+        $data = $request->only('title_en', 'desc_en', 'title_ar', 'desc_ar');
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('sub_services', 'public');
+            $data['image'] = $imagePath;
+        }
+
+        $subService->update($data);
+
+        return redirect()->route('admin.sub-services.index', $service)->with('success', 'SubService updated successfully.');
+    }
+
+    public function destroySubService(Service $service, SubService $subService)
+    {
+        $subService->delete();
+        return redirect()->route('admin.sub-services.index', $service)->with('success', 'SubService deleted successfully.');
+    }
+
+    // Users methods
+    public function indexUsers()
+    {
+        $users = User::all();
+        return view('admin.users.index', compact('users'));
+    }
+
+    public function createUser()
+    {
+        return view('admin.users.create');
+    }
+
+    public function storeUser(Request $request)
+    {
+        $request->validate([
+            'username' => 'required|string|max:255|unique:users',
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+            'role' => 'required|string',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $data = $request->only('username', 'name', 'email', 'role');
+        $data['password'] = Hash::make($request->password);
+
+        if ($request->hasFile('avatar')) {
+            $avatarPath = $request->file('avatar')->store('avatars', 'public');
+            $data['avatar'] = $avatarPath;
+        }
+
+        User::create($data);
+
+        return redirect()->route('admin.users.index')->with('success', 'User created successfully.');
+    }
+
+    public function editUser(User $user)
+    {
+        return view('admin.users.edit', compact('user'));
+    }
+
+    public function updateUser(Request $request, User $user)
+    {
+        $request->validate([
+            'username' => 'required|string|max:255|unique:users,username,' . $user->id,
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'password' => 'nullable|string|min:8|confirmed',
+            'role' => 'required|string',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $data = $request->only('username', 'name', 'email', 'role');
+
+        if ($request->filled('password')) {
+            $data['password'] = Hash::make($request->password);
+        }
+
+        if ($request->hasFile('avatar')) {
+            $avatarPath = $request->file('avatar')->store('avatars', 'public');
+            $data['avatar'] = $avatarPath;
+        }
+
+        $user->update($data);
+
+        return redirect()->route('admin.users.index')->with('success', 'User updated successfully.');
+    }
+
+    public function destroyUser(User $user)
+    {
+        $user->delete();
+        return redirect()->route('admin.users.index')->with('success', 'User deleted successfully.');
     }
 }

@@ -14,12 +14,16 @@ class Service extends Model
         'desc_en',
         'title_ar',
         'desc_ar',
-        'image',
         'banner',
     ];
 
     public function projects()
     {
         return $this->hasMany(Project::class);
+    }
+
+    public function subServices()
+    {
+        return $this->hasMany(SubService::class);
     }
 }

@@ -4,7 +4,7 @@
 @section('content')
 <div class="container">
     <h1>Add Project for {{ $service->title_en }}</h1>
-    <form action="{{ route('admin.projects.store', $service) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.projects.store', $service) }}" method="POST">
         @csrf
         <div class="row">
             <div class="col-6">
@@ -61,27 +61,9 @@
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-        <div class="mb-3">
-            <label for="image" class="form-label">Image</label>
-            <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" required onchange="previewImage(event)">
-            <img id="image-preview" src="#" alt="Image Preview" style="display: none; margin-top: 10px; max-width: 200px;">
-            @error('image')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
+        
         <button type="submit" class="btn btn-primary">Add Project</button>
     </form>
 </div>
 
-<script>
-    function previewImage(event) {
-        var reader = new FileReader();
-        reader.onload = function(){
-            var output = document.getElementById('image-preview');
-            output.src = reader.result;
-            output.style.display = 'block';
-        };
-        reader.readAsDataURL(event.target.files[0]);
-    }
-</script>
 @endsection

@@ -1,6 +1,7 @@
-<!-- filepath: /Users/7ossam/Sites/copplande/resources/views/layouts/web-app.blade.php -->
 <!DOCTYPE html>
-<html lang="ar">
+<html 
+@if(app()->getLocale() == "ar") dir="rtl" lang="ar" @else dir="ltr" lang="en" @endif
+>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +11,11 @@
     <link rel="icon" href="{{ asset('web-asset/images/favicon.ico') }}">
 
     <!-- bootstarp css file -->
-    <link rel="stylesheet" href="{{ asset('web-asset/css/bootstrap.min.css') }}">
+    @if(app()->getLocale() == "ar")
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.rtl.min.css">
+    @else
+        <link rel="stylesheet" href="{{ asset('web-asset/css/bootstrap.min.css') }}">
+    @endif
 
     <!-- bootstrap icons -->
     <link rel="stylesheet" href="{{ asset('web-asset/css/bootstrap-icons/bootstrap-icons.css') }}">
@@ -72,29 +77,29 @@
                     <i class="bi bi-list"></i>
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-                    <ul class="navbar-nav ms-auto" id="navbar" style="direction: rtl;">
+                    <ul class="navbar-nav ms-auto" id="navbar">
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">{{ __('homepage') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}" href="{{ route('about') }}">من نحن</a>
+                            <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}" href="{{ route('about') }}">{{ __('about us') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('team') ? 'active' : '' }}" href="{{ route('team') }}">فريقنا</a>
+                            <a class="nav-link {{ request()->routeIs('team') ? 'active' : '' }}" href="{{ route('team') }}">{{ __('our team') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('services') ? 'active' : '' }}" href="{{ route('services') }}">خدماتنا</a>
+                            <a class="nav-link {{ request()->routeIs('services') ? 'active' : '' }}" href="{{ route('services') }}">{{ __('our services') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('projects') ? 'active' : '' }}" href="{{ route('projects') }}">projects</a>
+                            <a class="nav-link {{ request()->routeIs('projects') ? 'active' : '' }}" href="{{ route('projects') }}">{{ __('projects') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('contactus') ? 'active' : '' }}" href="{{ route('contactus') }}">إتصل بنا</a>
+                            <a class="nav-link {{ request()->routeIs('contactus') ? 'active' : '' }}" href="{{ route('contactus') }}">{{ __('contact us') }}</a>
                         </li>
                     </ul>
                     <div class="dropdown ms-2">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            اللغة
+                            {{ __('language') }}
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="languageDropdown">
                             <li><a class="dropdown-item" href="{{ route('change.lang', ['lang' => 'en']) }}">English</a></li>
@@ -106,21 +111,21 @@
                             @if (Auth::user()->hasRole('admin'))
                                 <a href="{{ route('admin.dashboard') }}" class="btn">
                                     <i class="menu-icon tf-icons ti ti-smart-home"></i>
-                                    <div data-i18n="Dashboard"> لوحة التحكم</div>
+                                    <div data-i18n="Dashboard">{{ __('dashboard') }}</div>
                                 </a>
                             @elseif (Auth::user()->hasRole('customer'))
                                 <a href="{{ route('customer.dashboard') }}" class="btn">
                                     <i class="menu-icon tf-icons ti ti-smart-home"></i>
-                                    <div data-i18n="Dashboard"> لوحة التحكم</div>
+                                    <div data-i18n="Dashboard">{{ __('dashboard') }}</div>
                                 </a>
                             @elseif (Auth::user()->hasRole('manager'))
                                 <a href="{{ route('manager.dashboard') }}" class="btn">
                                     <i class="menu-icon tf-icons ti ti-smart-home"></i>
-                                    <div data-i18n="Dashboard"> لوحة التحكم</div>
+                                    <div data-i18n="Dashboard">{{ __('dashboard') }}</div>
                                 </a>
                             @endif
                         @else
-                            <a class="btn" href="{{ route('login') }}">دخول</a>&nbsp;
+                            <a class="btn" href="{{ route('login') }}">{{ __('login') }}</a>&nbsp;
                         @endif
                         <button id="mode-toggle" class="btn-light-mode switch-button"><i id="mode-icon"
                             class="bi bi-moon-fill"></i></button>
@@ -138,45 +143,41 @@
     <!-- ============== Start Footer section ========== -->
     <div class="footer" data-aos="fade-up" data-aos-delay="200">
         <div class="container">
-            <div class="py-4 d-flex flex-column  align-items-center justify-content-center ">
-                <h1 class="title col-lg-10 col-12 text-center">أطلق العنان للإمكانات الكاملة لشركتك من خلال خدمات
-                    تكنولوجيا المعلومات المتخصصة التي نقدمها</h1>
-                <a href="#" class="btn my-2 mb-4 pb-2">اتصل بنا</a>
-            </div>
+            
             <div class="row align-items-center">
 
                 <div class="col-12 col-lg-3 col-md-6 mx-auto d-flex flex-column my-4">
-                    <h4 class="my-2">خريطة الموقع</h4>
+                    <h4 class="my-2">{{ __('site map') }}</h4>
                     <ul>
-                        <li><a href="index.html">الرئيسية<i class="bi bi-chevron-left ms-2"></i></a></li>
-                        <li><a href="about.html">من نحن<i class="bi bi-chevron-left ms-2"></i></a></li>
-                        <li><a href="portfolio.html">معرضنا<i class="bi bi-chevron-left ms-2"></i></a></li>
-                        <li><a href="contact.html">اتصل بنا<i class="bi bi-chevron-left ms-2"></i></a></li>
+                        <li><a href="index.html">{{ __('homepage') }}<i class="bi bi-chevron-left ms-2"></i></a></li>
+                        <li><a href="about.html">{{ __('about us') }}<i class="bi bi-chevron-left ms-2"></i></a></li>
+                        <li><a href="portfolio.html">{{ __('projects') }}<i class="bi bi-chevron-left ms-2"></i></a></li>
+                        <li><a href="contact.html">{{ __('contact us') }}<i class="bi bi-chevron-left ms-2"></i></a></li>
                     </ul>
                 </div>
                 <div class="col-12 col-lg-3 col-md-6 mx-auto d-flex flex-column my-4">
-                    <h4 class="my-2">من نحن</h4>
+                    <h4 class="my-2">{{ __('about us') }}</h4>
                     <ul>
-                        <li><a href="about1.html">قصتنا<i class="bi bi-chevron-left ms-2"></i></a></li>
-                        <li><a href="team.html">أعضاء الفريق<i class="bi bi-chevron-left ms-2"></i></a></li>
-                        <li><a href="about2.html">وظائف<i class="bi bi-chevron-left ms-2"></i></a></li>
-                        <li><a href="contact.html">اتصل بنا<i class="bi bi-chevron-left ms-2"></i></a></li>
+                        <li><a href="about1.html">{{ __('our story') }}<i class="bi bi-chevron-left ms-2"></i></a></li>
+                        <li><a href="team.html">{{ __('team members') }}<i class="bi bi-chevron-left ms-2"></i></a></li>
+                        <li><a href="about2.html">{{ __('careers') }}<i class="bi bi-chevron-left ms-2"></i></a></li>
+                        <li><a href="contact.html">{{ __('contact us') }}<i class="bi bi-chevron-left ms-2"></i></a></li>
                     </ul>
                 </div>
                 <div class="col-12 col-lg-3 col-md-6 mx-auto d-flex flex-column my-4">
-                    <h4 class="my-2">روابط سريعة</h4>
+                    <h4 class="my-2">{{ __('quick links') }}</h4>
                     <ul>
-                        <li><a href="terms-of-use.html">شروط الاستخدام<i class="bi bi-chevron-left ms-2"></i></a></li>
-                        <li><a href="privacy-policy.html">سياسة الخصوصية<i class="bi bi-chevron-left ms-2"></i></a>
+                        <li><a href="terms-of-use.html">{{ __('terms of use') }}<i class="bi bi-chevron-left ms-2"></i></a></li>
+                        <li><a href="privacy-policy.html">{{ __('privacy policy') }}<i class="bi bi-chevron-left ms-2"></i></a>
                         </li>
-                        <li><a href="contact.html">اتصل بالدعم<i class="bi bi-chevron-left ms-2"></i></a></li>
-                        <li><a href="faqs.html">الأسئلة الشائعة<i class="bi bi-chevron-left ms-2"></i></a></li>
+                        <li><a href="contact.html">{{ __('contact support') }}<i class="bi bi-chevron-left ms-2"></i></a></li>
+                        <li><a href="faqs.html">{{ __('faqs') }}<i class="bi bi-chevron-left ms-2"></i></a></li>
                     </ul>
                 </div>
                 <div class="col-12 col-lg-3 col-md-6 mx-auto my-4">
                     <div class="box d-flex flex-column justify-content-end align-items-end">
-                        <a href="index.html" class="logo dark">كوبلاند</a>
-                        <p class="col-10">نسعى لتقديم أفضل الحلول التكنولوجية المخصصة لدعم نجاح عملك.</p>
+                        <a href="index.html" class="logo dark">{{ __('copplande') }}</a>
+                        <p class="col-10">{{ __('we strive to provide the best customized technological solutions to support your business success.') }}</p>
                         <div class="social d-flex">
                             <a href="#"><i class="bi bi-facebook"></i></a>
                             <a href="#"><i class="ms-3 bi bi-instagram"></i></a>
@@ -193,14 +194,14 @@
                 <div class="row">
                     <div class="col-12 col-md-6 d-flex justify-content-start w-100">
                         <div>
-                            <a href="terms-of-use.html">شروط الاستخدام </a>
-                            | <a href="privacy-policy.html">سياسة الخصوصية</a>
+                            <a href="terms-of-use.html">{{ __('terms of use') }} </a>
+                            | <a href="privacy-policy.html">{{ __('privacy policy') }}</a>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 d-flex justify-content-end w-100">
                         <p class="creadits">
                             &copy; 2024
-                            Created by: <a href="http://kama.bh">Kama</a>
+                            {{ __('created by') }}: <a href="http://kama.bh">Kama</a>
                         </p>
                     </div>
                 </div>
