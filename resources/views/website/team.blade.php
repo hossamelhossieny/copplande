@@ -24,7 +24,7 @@
    <!-- ======= start team section ======= -->
    <div class="team container py-5 my-5">
     <h1 class="title col-12 my-3" data-aos="fade-up" data-aos-delay="100">
-        our skilled <span class="unique-text">team</span>
+        {{ __('our skilled') }} <span class="unique-text">{{ __('team') }}</span>
     </h1>
     <div class="row g-4">
         <div class="col-lg-4 col-md-6 col-12" data-aos="fade-right" data-aos-delay="200">
@@ -33,7 +33,7 @@
                     <div class="img"><img src="{{ asset('web-asset/images/testimonials/testimonials-1.jpg') }}" alt="team"></div>
                     <div class="pt-3 d-flex flex-column justify-content-center align-items-center">
                         <h3 class="sub-title">ahmed errami</h3>
-                        <p>web developer</p>
+                        <p>{{ __('web developer') }}</p>
                         <div class="d-flex gap-3 my-2">
                             <a href="#"><i class="bi bi-facebook"></i></a>
                             <a href="#"><i class="bi bi-instagram"></i></a>
@@ -50,7 +50,7 @@
                     <div class="img"><img src="{{ asset('web-asset/images/testimonials/testimonials-4.jpg') }}" alt="team"></div>
                     <div class="pt-3 d-flex flex-column justify-content-center align-items-center">
                         <h3 class="sub-title">eliot alderson</h3>
-                        <p>founder</p>
+                        <p>{{ __('founder') }}</p>
                         <div class="d-flex gap-3 my-2">
                             <a href="#"><i class="bi bi-facebook"></i></a>
                             <a href="#"><i class="bi bi-instagram"></i></a>
@@ -67,7 +67,7 @@
                     <div class="img"><img src="{{ asset('web-asset/images/testimonials/testimonials-5.jpg') }}" alt="team"></div>
                     <div class="pt-3 d-flex flex-column justify-content-center align-items-center">
                         <h3 class="sub-title">walter white</h3>
-                        <p>sales manager</p>
+                        <p>{{ __('sales manager') }}</p>
                         <div class="d-flex gap-3 my-2">
                             <a href="#"><i class="bi bi-facebook"></i></a>
                             <a href="#"><i class="bi bi-instagram"></i></a>

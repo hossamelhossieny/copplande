@@ -5,12 +5,10 @@
 @push('styles')
   <link rel="stylesheet" href="{{ asset('web-asset/css/owl.carousel.min.css') }}">
   <link rel="stylesheet" href="{{ asset('web-asset/css/owl.theme.default.min.css') }}">
-
 @endpush
 
 <section class="hero" id="hero" style="min-height: 0 !important;height:60px;border-bottom:2px solid #000;">
     <div class="container">
-
         <div class="hero-images">
             <div class="row">
                 <div class="col-lg-3 col-12 hero-img" data-aos="fade-right" data-aos-delay="150">
@@ -24,13 +22,12 @@
                 </div>
             </div>
         </div>
-
 </section>
 
-  <!-- ============== Start Blog section ========== -->
-  <div class="blog py-4 my-4">
+<!-- ============== Start Blog section ========== -->
+<div class="blog py-4 my-4">
     <div class="container">
-        <h1 class="title col-lg-5 col-12 w-100" data-aos="fade-up" data-aos-delay="100">أحدث <span class="unique-text">مشاريعنا</span></h1>
+        <h1 class="title col-lg-5 col-12 w-100" data-aos="fade-up" data-aos-delay="100">{{ __('latest projects') }} <span class="unique-text">{{ __('our unique projects') }}</span></h1>
         <div class="row my-2 gx-4 gy-4">
             @foreach ($services as $key=>$service)
             @if($key % 2 == 0)
@@ -51,19 +48,13 @@
             </div>
             @endif
             @endforeach
-
-
-
-
         </div>
     </div>
 </div>
 
-
-
-  @push('scripts')
-        <!--  counter     -->
-  <script src="{{ asset('web-asset') }}/js/jquery.counterup.min.js"></script>
-  <script src="{{ asset('web-asset') }}/js/jquery.waypoints.js"></script>
-  @endpush
+@push('scripts')
+    <!--  counter     -->
+    <script src="{{ asset('web-asset') }}/js/jquery.counterup.min.js"></script>
+    <script src="{{ asset('web-asset') }}/js/jquery.waypoints.js"></script>
+@endpush
 @endsection
