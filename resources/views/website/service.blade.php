@@ -1,4 +1,4 @@
-@extends('layouts.web-app')
+<x-app>
 
 @section('content')
 <section class="blog-single">
@@ -90,4 +90,4 @@
       @endforeach
     </div>
   </div>
-@endsection
+</x-app>

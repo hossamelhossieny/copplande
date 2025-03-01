@@ -26,4 +26,9 @@ class Service extends Model
     {
         return $this->hasMany(SubService::class);
     }
+
+    public function getTitleAttribute($value)
+    {
+        return app()->getLocale() == 'ar' ? $this->title_ar : $this->title_en;
+    }
 }

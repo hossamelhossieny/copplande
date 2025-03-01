@@ -1,0 +1,216 @@
+<!-- ===================================================
+template name : itran | IT solutions - business services HTML template
+Author: erramix
+Version: 2.0
+==================================================== -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="itran | IT solutions - business services HTML template ">
+  <!-- fav icon -->
+  <link rel="icon" href="{{asset('web-asset/images')}}/favicon.ico">
+
+  <!-- bootstrap icons -->
+  <link rel="stylesheet" href="{{asset('web-asset/css')}}/bootstrap-icons/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+  <!--  toasts file     -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.{{asset('web-asset/js')}}/latest/{{asset('web-asset/css')}}/toastr.min.css">
+
+  <!--  aos css file     -->
+  <link rel="stylesheet" href="{{asset('web-asset/css')}}/aos.css">
+
+  <!-- Google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@200;300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- main css file -->
+  @if(app()->getLocale() == "ar")
+      <!-- bootstarp css file -->
+      <link rel="stylesheet" href="{{asset('web-asset/css')}}/bootstrap_ar.min.css">
+      <link rel="stylesheet" href="{{asset('web-asset/css')}}/style_ar.css">
+  @else
+
+      <!-- bootstarp css file -->
+      <link rel="stylesheet" href="{{asset('web-asset/css')}}/bootstrap.min.css">
+      <link rel="stylesheet" href="{{asset('web-asset/css')}}/style.css">
+  @endif
+  <title> {{ app()->getLocale() }}itran | IT solutions - business services HTML template </title>
+</head>
+
+<body @if(app()->getLocale() == "ar") class="home-rtl" @endif>
+  <!-- start scroll to top button -->
+  <div id="progress">
+    <span id="progress-value"><i class="bi bi-arrow-up-short"></i></span>
+  </div>
+  <!-- end scroll to top button -->
+
+  <!-- start preLoader -->
+  <div id="preloader">
+    <div class="spinner"></div>
+  </div>
+  <!-- end preLoader -->
+
+  <!-- ======= start Header ======= -->
+  <header class="header">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+        <a class="logo" href="{{ url('/') }}">itran</a>
+        <!-- if you want to use image in your logo uncomment the following line -->
+        <!-- <a class="navbar-brand " href="#"><img src="{{asset('web-asset/images')}}/logo/logo.png" class="logo"  alt="LOGO"></a> -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="bi bi-list"></i>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+          <ul class="navbar-nav ms-auto" id="navbar">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url(app()->getLocale()) }}">{{ __('messages.home') }}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url(app()->getLocale().'/about') }}">{{ __('messages.about') }}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url(app()->getLocale().'/projects') }}">{{ __('messages.projects') }}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url(app()->getLocale().'/services') }}">{{ __('messages.services') }}</a>
+            </li>           
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url(app()->getLocale().'/team') }}">{{ __('messages.ourteam') }}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url(app()->getLocale().'/contactus') }}">{{ __('messages.contactus') }}</a>
+            </li>
+          </ul>
+          <div class="d-flex ms-auto">
+            <div class="dropdown ms-2">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                  {{ __('language') }}
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                  <li><a class="dropdown-item" href="#" onclick="changeLanguage('en')">English</a></li>
+                  <li><a class="dropdown-item" href="#" onclick="changeLanguage('ar')">العربية</a></li>
+              </ul>
+          </div>
+            <button id="mode-toggle" class="btn-light-mode switch-button"><i id="mode-icon"
+                class="bi bi-moon-fill"></i></button>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!-- ======= end Header ======= -->
+{{ $slot }}
+  <!-- ============== Start Footer section ========== -->
+  <div class="footer" data-aos="fade-up" data-aos-delay="200">
+    <div class="container">
+        <div class="py-4 d-flex flex-column align-items-center justify-content-center">
+            <h1 class="title col-lg-10 col-12 text-center">{{ __('messages.unlock_potential') }}</h1>
+            <a href="#" class="btn my-2 mb-4 pb-2">{{ __('messages.get_started') }}</a>
+        </div>
+        <div class="row align-items-center">
+            <div class="col-12 col-lg-3 col-md-6 mx-auto my-4">
+                <div class="box">
+                    <a href="index.html" class="logo dark">{{ Config::get('app.name') }}</a>
+                    <p class="col-10">{{ __('messages.photographer_desc') }}</p>
+                    <div class="social d-flex">
+                      <a href="#"><i class="bi bi-facebook"></i></a>
+                      <a href="#"><i class="ms-3 bi bi-instagram"></i></a>
+                      <a href="#"><i class="ms-3 bi bi-twitter "></i></a>
+                      <a href="#"><i class="ms-3 bi bi-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3 col-md-6 mx-auto d-flex flex-column my-4">
+                <h4 class="my-2">{{ __('messages.site_map') }}</h4>
+                <ul>
+                    <li><a href="index.html"><i class="bi bi-chevron-right me-2"></i>{{ __('messages.home') }}</a></li>
+                    <li><a href="about.html"><i class="bi bi-chevron-right me-2"></i>{{ __('messages.about') }}</a></li>
+                    <li><a href="portfolio.html"><i class="bi bi-chevron-right me-2"></i>{{ __('messages.work') }}</a></li>
+                    <li><a href="contact.html"><i class="bi bi-chevron-right me-2"></i>{{ __('messages.contact') }}</a></li>
+                </ul>
+            </div>
+            <div class="col-12 col-lg-3 col-md-6 mx-auto d-flex flex-column my-4">
+                <h4 class="my-2">{{ __('messages.about_us') }}</h4>
+                <ul>
+                    <li><a href="about1.html"><i class="bi bi-chevron-right me-2"></i>{{ __('messages.our_story') }}</a></li>
+                    <li><a href="team.html"><i class="bi bi-chevron-right me-2"></i>{{ __('messages.team_members') }}</a></li>
+                    <li><a href="about2.html"><i class="bi bi-chevron-right me-2"></i>{{ __('messages.careers') }}</a></li>
+                    <li><a href="contact.html"><i class="bi bi-chevron-right me-2"></i>{{ __('messages.contact') }}</a></li>
+                </ul>
+            </div>
+            <div class="col-12 col-lg-3 col-md-6 mx-auto d-flex flex-column my-4">
+                <h4 class="my-2">{{ __('messages.quick_links') }}</h4>
+                <ul>
+                    <li><a href="terms-of-use.html"><i class="bi bi-chevron-right me-2"></i>{{ __('messages.terms_of_use') }}</a></li>
+                    <li><a href="privacy-policy.html"><i class="bi bi-chevron-right me-2"></i>{{ __('messages.privacy_policy') }}</a></li>
+                    <li><a href="contact.html"><i class="bi bi-chevron-right me-2"></i>{{ __('messages.contact_support') }}</a></li>
+                    <li><a href="faqs.html"><i class="bi bi-chevron-right me-2"></i>{{ __('messages.faqs') }}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="copyrights">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6 d-flex justify-content-start">
+                    <p class="creadits">
+                        &copy; {{ date('Y') }}
+                        {{ __('messages.created_by') }}: <a href="http://kama.bh">Kama</a>
+                    </p>
+                </div>
+                <div class="col-12 col-md-6 d-flex justify-content-end">
+                    <div>
+                        <a href="terms-of-use.html">{{ __('messages.terms_of_use') }}</a>
+                        | <a href="privacy-policy.html">{{ __('messages.privacy_policy') }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  <!-- ============== end Footer section ========== -->
+
+
+
+  <!--  JQuery file     -->
+  <script src="{{asset('web-asset/js')}}/jquery-3.6.1.min.js"></script>
+
+  <!-- bootstrap min js -->
+  <script src="{{asset('web-asset/js')}}/bootstrap.min.js"></script>
+
+  <!--  aos js file    -->
+  <script src="{{asset('web-asset/js')}}/aos.js"></script>
+
+  <!--  toasts file     -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.{{asset('web-asset/js')}}/latest/{{asset('web-asset/js')}}/toastr.min.js"></script>
+
+  <!--  counter     -->
+  <script src="{{asset('web-asset/js')}}/jquery.counterup.min.js"></script>
+  <script src="{{asset('web-asset/js')}}/jquery.waypoints.js"></script>
+
+  <!--  main js file  -->
+  <script src="{{asset('web-asset/js')}}/main.js"></script>
+
+  <script>
+    function changeLanguage(lang) {
+      
+    let path = window.location.pathname;
+    let currentLocale = path.split('/')[1];
+    let newPath = path.replace('/' + currentLocale , '/' + lang );
+    
+    window.location.href = newPath;
+}
+  </script>
+</body>
+
+</html>

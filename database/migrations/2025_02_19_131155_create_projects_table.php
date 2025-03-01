@@ -13,14 +13,15 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('service_id')->constrained()->onDelete('cascade');
+            $table->foreignId('service_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('title_en');
             $table->text('desc_en');
             $table->string('title_ar');
             $table->text('desc_ar');
-            $table->string('client');
-            $table->date('delivery_date');
-            $table->integer('delivery_duration');
+            $table->string('client_id')->nullable();
+            $table->date('delivery_date')->nullable();
+            $table->integer('delivery_duration')->nullable();
+            $table->boolean('active');
             $table->timestamps();
         });
     }

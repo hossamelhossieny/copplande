@@ -5,8 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+
+
+class Project extends Model implements HasMedia
 {
+    use InteractsWithMedia;
+
     use HasFactory;
 
     protected $fillable = [
@@ -25,8 +31,18 @@ class Project extends Model
         return $this->belongsTo(Service::class);
     }
 
-    public function images()
+    public function client()
     {
-        return $this->hasMany(ProjectImage::class);
+        return $this->belongsTo(Client::class);
+    }
+
+    public function getTitleAttribute()
+    {
+        return app()->isLocale('ar') ? $this->title_ar : $this->title_en;
+    }
+
+    public function getDescAttribute()
+    {
+        return app()->isLocale('ar') ? $this->desc_ar : $this->desc_en;
     }
 }

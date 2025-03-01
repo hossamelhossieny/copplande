@@ -1,6 +1,37 @@
 <?php
-// filepath: /Users/7ossam/Sites/copplande/resources/lang/ar/messages.php
+
 return [
-    'welcome' => 'مرحبًا بك في تطبيقنا',
-    // Add other translations here
+    'home' => 'الرئيسية',
+    'about' => 'من نحن',
+    'projects' => 'المشاريع',
+    'services' => 'الخدمات',
+    'contactus' => 'اتصل بنا',
+    'language' => 'اللغة',
+    'ourteam' => 'فريقنا',
+    'about_the_project' => 'عن المشروع',
+    'service' => 'الخدمة',
+    'delivery_date' => 'تاريخ التسليم',
+    'delivery_duration' => 'المدة بالأيام',
+    'screenshots' => 'صور الشاشة',
+    'client' => 'العميل',
+    'days' => 'أيام',
+    'details' => 'التفاصيل',
+    
+    // Footer translations
+    'get_started' => 'ابدأ الآن',
+    'unlock_potential' => 'أطلق العنان لإمكانات شركتك الكاملة مع خدمات تكنولوجيا المعلومات المتخصصة لدينا',
+    'photographer_desc' => 'مصور شغوف بالتقاط جمال ومشاعر الحياة',
+    'site_map' => 'خريطة الموقع',
+    'work' => 'أعمالنا',
+    'contact' => 'اتصل بنا',
+    'about_us' => 'من نحن',
+    'our_story' => 'قصتنا',
+    'team_members' => 'أعضاء الفريق',
+    'careers' => 'الوظائف',
+    'quick_links' => 'روابط سريعة',
+    'terms_of_use' => 'شروط الاستخدام',
+    'privacy_policy' => 'سياسة الخصوصية',
+    'contact_support' => 'اتصل بالدعم',
+    'faqs' => 'الأسئلة الشائعة',
+    'created_by' => 'تم الإنشاء بواسطة',
 ];

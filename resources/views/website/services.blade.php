@@ -1,41 +1,21 @@
-@extends('layouts.web-app')
-
-@section('content')
-
+<x-app>
 @push('styles')
   <link rel="stylesheet" href="{{ asset('web-asset/css/owl.carousel.min.css') }}">
   <link rel="stylesheet" href="{{ asset('web-asset/css/owl.theme.default.min.css') }}">
 @endpush
 
-<section class="hero" id="hero" style="min-height: 0 !important;height:60px;border-bottom:2px solid #000;">
-    <div class="container">
-        <div class="hero-images">
-            <div class="row">
-                <div class="col-lg-3 col-12 hero-img" data-aos="fade-right" data-aos-delay="150">
-                    <img src="{{ asset('web-asset/images/hero/1.jpg') }}" alt="hero-image">
-                </div>
-                <div class="col-lg-6 col-12 hero-img" data-aos="fade-up" data-aos-delay="100">
-                    <img src="{{ asset('web-asset/images/hero/2.jpg') }}" alt="hero-image">
-                </div>
-                <div class="col-lg-3 col-12 hero-img" data-aos="fade-left" data-aos-delay="150">
-                    <img src="{{ asset('web-asset/images/hero/3.jpg') }}" alt="hero-image">
-                </div>
-            </div>
-        </div>
-</section>
-
 <!-- ============== Start Blog section ========== -->
 <div class="blog py-4 my-4">
-    <div class="container">
-        <h1 class="title col-lg-5 col-12 w-100" data-aos="fade-up" data-aos-delay="100">{{ __('latest projects') }} <span class="unique-text">{{ __('our unique projects') }}</span></h1>
+    <div class="container mt-5 pt-5">
+        <h1 class="title col-lg-5 col-12 w-100" data-aos="fade-up" data-aos-delay="100">{{ __('messages.services') }} </h1>
         <div class="row my-2 gx-4 gy-4">
             @foreach ($services as $key=>$service)
             @if($key % 2 == 0)
             <div class="col-lg-6 col-12" data-aos="fade-right" data-aos-delay="150">
-                <div class="bg-box d-flex flex-column justify-content-end align-items-end p-4">
+                <div class="bg-box d-flex flex-column justify-content-start align-items-start p-4">
                     <img src="{{ asset($service['image']) }}" alt="blog">
                     <h2 class="blog-title my-4">{{ $service['title_'.app()->getLocale()] }}</h2>
-                    <a href="{{ route('one.service',$service['id']) }}" class="learn-more my-2"><i class="bi bi-arrow-left"></i> {{ __('more') }}</a>
+                    <a href="{{ route('one.service',$service->id) }}" class="learn-more my-2"><i class="bi @if(app()->getLocale() == 'ar') bi-arrow-left @else bi-arrow-right @endif"></i> {{ __('messages.details') }}</a>
                 </div>
             </div>
             @else
@@ -57,4 +37,4 @@
     <script src="{{ asset('web-asset') }}/js/jquery.counterup.min.js"></script>
     <script src="{{ asset('web-asset') }}/js/jquery.waypoints.js"></script>
 @endpush
-@endsection
+</x-app>

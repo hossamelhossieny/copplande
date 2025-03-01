@@ -1,6 +1,37 @@
 <?php
-// filepath: /Users/7ossam/Sites/copplande/resources/lang/en/messages.php
+
 return [
-    'welcome' => 'Welcome to our application',
-    // Add other translations here
+    'home' => 'Home',
+    'about' => 'About',
+    'projects' => 'Projects',
+    'services' => 'Services',
+    'contactus' => 'Contact Us',
+    'language' => 'Language',
+    'ourteam' => 'Our Team',
+    'about_the_project' => 'About the Project',
+    'service' => 'Service',
+    'delivery_date' => 'Delivery Date',
+    'delivery_duration' => 'Duration In Days',
+    'screenshots' => 'Screenshots',
+    'client' => 'Client',
+    'days' => 'Days',
+    'details' => 'Details',
+    
+    // Footer translations
+    'get_started' => 'Get Started',
+    'unlock_potential' => "Unlock your company's full potential with our expert IT services",
+    'photographer_desc' => 'Photographer with a passion for capturing the beauty and emotion of life.',
+    'site_map' => 'Site Map',
+    'work' => 'Work',
+    'contact' => 'Contact',
+    'about_us' => 'About Us',
+    'our_story' => 'Our Story',
+    'team_members' => 'Team Members',
+    'careers' => 'Careers',
+    'quick_links' => 'Quick Links',
+    'terms_of_use' => 'Terms of Use',
+    'privacy_policy' => 'Privacy Policy',
+    'contact_support' => 'Contact Support',
+    'faqs' => "FAQ's",
+    'created_by' => 'Created by',
 ];
