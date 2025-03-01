@@ -20,12 +20,14 @@ class HomeController extends Controller
     }
 
     public function about(){
+
         $aboutSection = AboutSection::all();
         return view('website.about', compact('aboutSection'));
     }
-   
+  
     public function services(){
         $arr['services'] = Service::all();
+
         return view('website.services',$arr);
     }
     public function one_service($lang,$id){
