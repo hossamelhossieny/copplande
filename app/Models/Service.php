@@ -14,12 +14,21 @@ class Service extends Model
         'desc_en',
         'title_ar',
         'desc_ar',
-        'image',
         'banner',
     ];
 
     public function projects()
     {
         return $this->hasMany(Project::class);
+    }
+
+    public function subServices()
+    {
+        return $this->hasMany(SubService::class);
+    }
+
+    public function getTitleAttribute($value)
+    {
+        return app()->getLocale() == 'ar' ? $this->title_ar : $this->title_en;
     }
 }
