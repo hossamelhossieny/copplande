@@ -12,7 +12,7 @@
             @foreach ($services as $service)            
             <div class="col-lg-6 col-12" data-aos="fade-right" data-aos-delay="150">
                 <div class="bg-box d-flex flex-column justify-content-start align-items-start p-4">
-                    <img src="{{ asset($service['image']) }}" alt="blog">
+                    <img src="{{ asset('storage/' .$service['image']) }}" alt="blog">
                     <h2 class="blog-title my-4">{{ $service['title_'.app()->getLocale()] }}</h2>
                     <a href="{{ route('one.service',$service->id) }}" class="learn-more my-2"><i class="bi @if(app()->getLocale() == 'ar') bi-arrow-left @else bi-arrow-right @endif"></i> {{ __('messages.details') }}</a>
                 </div>
