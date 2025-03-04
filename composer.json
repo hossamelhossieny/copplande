@@ -8,6 +8,7 @@
     "require": {
         "php": "^8.2",
         "abdulmajeed-jamaan/filament-translatable-tabs": "^2.0",
+        "bezhansalleh/filament-shield": "^3.3",
         "filament/filament": "^3.2",
         "filament/spatie-laravel-media-library-plugin": "^3.2",
         "filament/spatie-laravel-translatable-plugin": "^3.2",
