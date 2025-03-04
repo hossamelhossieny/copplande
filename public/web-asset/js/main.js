@@ -130,20 +130,26 @@ window.addEventListener("load", function () {
 
 let calcScrollValue = () => {
     let scrollProgress = document.getElementById("progress");
-    let porogressValue = document.getElementById("progress-value");
+    let progressValue = document.getElementById("progress-value");
     let pos = document.documentElement.scrollTop;
     let calcHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     let scrollValue = Math.round((pos * 100) / calcHeight);
+    
     if (pos > 100) {
         scrollProgress.style.display = "grid";
-    }
-    else {
+    } else {
         scrollProgress.style.display = "none";
     }
+    
     scrollProgress.addEventListener("click", () => {
         document.documentElement.scrollTop = 0;
     });
-    scrollProgress.style.background = `conic-gradient(#FF6B33 ${scrollValue}%, #d7d7d7 ${scrollValue}%)`;
+
+    // Get the current brand color from CSS variable
+    const brandColor = getComputedStyle(document.documentElement)
+        .getPropertyValue('--body-color').trim();
+    
+    scrollProgress.style.background = `conic-gradient(${brandColor} ${scrollValue}%, #FFFFFF ${scrollValue}%)`;
 };
 window.onscroll = calcScrollValue;
 window.onload = calcScrollValue;

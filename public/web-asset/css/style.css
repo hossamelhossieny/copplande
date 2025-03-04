@@ -2,19 +2,19 @@
 :root {
 
   /* body bg color */
-  --body-color: #202020;
+  --body-color: rgba(19, 39, 74, 0.8);
 
   /* Primary text Color */
-  --primary-text-color: #F5F5F5;
+  --primary-text-color: #AD8564;
 
   /* Secondary text Color */
-  --secendary-text-color: #dddddd;
+  --secendary-text-color: rgba(202, 191, 170,1);
 
   /* box bg Color */
-  --box-color: #242424;
+  --box-color: rgba(19, 39, 74, 0.9);;
 
   /* brand Color */
-  --brand-color: #FF6B33;
+  --brand-color: #CABFAA;
 
   /* border radius */
   --border-radius: 20px;
@@ -22,21 +22,22 @@
 
 body.dark-mode {
   /* body bg color */
-  --body-color: #F9F7F7;
+  --body-color: rgba(202, 191, 170, 0.1);
 
   /* Primary text Color */
-  --primary-text-color: #131313;
+  --primary-text-color: #AD8564;
 
   /* Secondary text Color */
-  --secendary-text-color: #242424;
+  --secendary-text-color: #13274A;
 
   /* box bg Color */
-  --box-color: #F3F3F3;
+  --box-color: rgba(202, 191, 170, 0.2);
 
   /* brand Color */
-  --brand-color: #fd4e0e;
+  --brand-color: #13274A;
 
 }
+
 
 * {
   padding: 0;

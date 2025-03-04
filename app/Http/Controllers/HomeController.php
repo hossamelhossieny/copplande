@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\AboutSection;
+use App\Models\Counter;
+use App\Models\Faq;
+use App\Models\Page;
 use App\Models\Project;
 use App\Models\Service;
 use App\Models\Team;
@@ -15,8 +18,19 @@ class HomeController extends Controller
 {
     public function index(){        
         $arr['aboutSection'] = AboutSection::all();
+        $arr['services'] = Service::limit(4)->get();
+        $arr['projects'] = Project::limit(4)->get();
+        $arr['team'] = Team::limit(3)->get();
+        $arr['faqs'] = Faq::limit(8)->get();
+        $arr['counters'] = Counter::all();
 
         return view('website.home',$arr);
+    }
+
+    public function page($lang,$id){
+        $arr['page'] = Page::where('id', $id)->first();
+        
+        return view('website.page', $arr);
     }
 
     public function about(){
@@ -29,7 +43,7 @@ class HomeController extends Controller
         return view('website.services',$arr);
     }
     public function one_service($lang,$id){
-        $arr['service'] = Service::where('id',$id)->with(['subServices','projects.images'])->first();
+        $arr['service'] = Service::where('id',$id)->with(['subServices','projects'])->first();
         return view('website.service',$arr);
     }
     public function projects(){

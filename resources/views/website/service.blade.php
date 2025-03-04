@@ -42,7 +42,7 @@
 
   <div class="services my-4 py-4">
     <div class="container">
-        <h1 class="title mb-2 col-lg-5 col-12 w-100" data-aos="fade-up">ماذا نقدم لعملاؤنا ؟</h1>
+        <h1 class="title mb-2 col-lg-5 col-12 w-100" data-aos="fade-up">{{ __('messages.what_we_offer') }}</h1>
 
         @foreach ($service['subServices'] as $key=>$serv)
         @if($key % 2 != 0)
@@ -50,7 +50,7 @@
                 <div class="col-lg-6 col-12 d-flex flex-column align-items-end justify-content-end">
                     <h1 class="service-title my-4" data-aos="fade-up" data-aos-delay="150">{{ $serv['title_'.app()->getLocale()] }}</h1>
                     <p class="col-11" data-aos="fade-up" data-aos-delay="200">{{ $serv['desc_'.app()->getLocale()] }}</p>
-                    <a href="#projects" class="btn my-2" data-aos="fade-up" data-aos-delay="250"><i class="bi bi-arrow-left"></i> {{ __('see our projects') }}</a>
+                    <a href="#projects" class="btn my-2" data-aos="fade-up" data-aos-delay="250"><i class="bi bi-arrow-left"></i> {{ __('messages.projects') }}</a>
                 </div>
                 <div class="col-lg-6 col-12" data-aos="fade-left" data-aos-delay="100">
                     <img src="{{ asset('storage/' .$serv->image) }}" class="img-fluid" alt="{{ $serv['desc_'.app()->getLocale()] }}" title="{{ $serv['desc_'.app()->getLocale()] }}">
@@ -64,7 +64,7 @@
             <div class="col-lg-6 col-12 d-flex flex-column align-items-end justify-content-end">
                 <h1 class="service-title my-4" data-aos="fade-up" data-aos-delay="150">{{ $serv['title_'.app()->getLocale()] }}</h1>
                 <p class="col-11" data-aos="fade-up" data-aos-delay="200">{{ $serv['desc_'.app()->getLocale()] }}</p>
-                <a href="#projects" class="btn my-2" data-aos="fade-up" data-aos-delay="250"><i class="bi bi-arrow-left"></i> {{ __('see our projects') }}</a>
+                <a href="#projects" class="btn my-2" data-aos="fade-up" data-aos-delay="250"><i class="bi bi-arrow-left"></i> {{ __('messages.projects') }}</a>
             </div>
         </div>
         @endif
@@ -76,14 +76,13 @@
 
 
   <div class="container mt-4 py-4 blog" id="projects">
-    <h1 class="title col-lg-5 col-12" data-aos="fade-up" data-aos-delay="150">{{ __('our resent') }} <span
-        class="unique-text">{{ __('Projects') }}</span></h1>
+    <h1 class="title col-lg-5 col-12" data-aos="fade-up" data-aos-delay="150">{{ __('messages.projects') }}</span></h1>
     
     <div class="row my-2 gx-4 gy-4">
       @foreach ($service['projects'] as $project)
           <div class="col-lg-6 col-12" data-aos="fade-up" data-aos-delay="150">
             <div class="bg-box p-4">
-              <img src="{{ asset($project['images'][0]['path']) }}" alt="{{ $project['title_'.app()->getLocale()] }}" title="{{ $project['title_'.app()->getLocale()] }}" class="img-fluid">
+              <img src="{{ asset($project->getMedia()->first()->getUrl()) }}" alt="{{ $project['title_'.app()->getLocale()] }}" title="{{ $project['title_'.app()->getLocale()] }}" class="img-fluid">
               <h2 class="sub-title m-3 mt-4"><a href="{{ route('one.project',$project['id']) }}">{{ $project['title_'.app()->getLocale()] }}</a></h2>
             </div>
           </div>

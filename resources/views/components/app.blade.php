@@ -42,7 +42,7 @@ Version: 2.0
       <link rel="stylesheet" href="{{asset('web-asset/css')}}/bootstrap.min.css">
       <link rel="stylesheet" href="{{asset('web-asset/css')}}/style.css">
   @endif
-  <title> {{ app()->getLocale() }}itran | IT solutions - business services HTML template </title>
+  <title> @if(!empty($title)) {{ $title }} @else @if(app()->getLocale() == "en") Copplande | Unlimited Service @else كوبلاند | خدمات غير محدودة @endif  @endif</title>
 </head>
 
 <body @if(app()->getLocale() == "ar") class="home-rtl" @endif>
@@ -62,7 +62,7 @@ Version: 2.0
   <header class="header">
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container">
-        <a class="logo" href="{{ url('/') }}">itran</a>
+        <a class="logo" href="{{ url('/') }}">Copplande</a>
         <!-- if you want to use image in your logo uncomment the following line -->
         <!-- <a class="navbar-brand " href="#"><img src="{{asset('web-asset/images')}}/logo/logo.png" class="logo"  alt="LOGO"></a> -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -116,11 +116,11 @@ Version: 2.0
             <h1 class="title col-lg-10 col-12 text-center">{{ __('messages.unlock_potential') }}</h1>
             <a href="#" class="btn my-2 mb-4 pb-2">{{ __('messages.get_started') }}</a>
         </div>
-        <div class="row align-items-center">
-            <div class="col-12 col-lg-3 col-md-6 mx-auto my-4">
+        <div class="row align-items-start">
+            <div class="col-12 col-lg-3 col-md-6 mx-auto my-4 d-flex flex-column align-items-start">
                 <div class="box">
-                    <a href="index.html" class="logo dark">{{ Config::get('app.name') }}</a>
-                    <p class="col-10">{{ __('messages.photographer_desc') }}</p>
+                    <a href="{{ url('/'.app()->getLocale()) }}" class="logo dark">{{ __('messages.site_name') }}</a>
+                    <p class="col-10">{{ __('messages.footer_desc') }}</p>
                     <div class="social d-flex">
                       <a href="#"><i class="bi bi-facebook"></i></a>
                       <a href="#"><i class="ms-3 bi bi-instagram"></i></a>
@@ -129,31 +129,30 @@ Version: 2.0
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-lg-3 col-md-6 mx-auto d-flex flex-column my-4">
+            <div class="col-12 col-lg-3 col-md-6 mx-auto my-4 d-flex flex-column align-items-start">
                 <h4 class="my-2">{{ __('messages.site_map') }}</h4>
-                <ul>
-                    <li><a href="index.html"><i class="bi bi-chevron-right me-2"></i>{{ __('messages.home') }}</a></li>
-                    <li><a href="about.html"><i class="bi bi-chevron-right me-2"></i>{{ __('messages.about') }}</a></li>
-                    <li><a href="portfolio.html"><i class="bi bi-chevron-right me-2"></i>{{ __('messages.work') }}</a></li>
-                    <li><a href="contact.html"><i class="bi bi-chevron-right me-2"></i>{{ __('messages.contact') }}</a></li>
+                <ul class="mt-0">
+                    <li><a href="{{ url(app()->getLocale()) }}"><i class="bi bi-chevron-right me-2"></i>{{ __('messages.home') }}</a></li>
+                    <li><a href="{{ url(app()->getLocale().'/about') }}"><i class="bi bi-chevron-right me-2"></i>{{ __('messages.about') }}</a></li>
+                    <li><a href="{{ url(app()->getLocale().'/services') }}"><i class="bi bi-chevron-right me-2"></i>{{ __('messages.services') }}</a></li>
+                    <li><a href="{{ url(app()->getLocale().'/projects') }}"><i class="bi bi-chevron-right me-2"></i>{{ __('messages.projects') }}</a></li>
                 </ul>
             </div>
-            <div class="col-12 col-lg-3 col-md-6 mx-auto d-flex flex-column my-4">
+            <div class="col-12 col-lg-3 col-md-6 mx-auto my-4 d-flex flex-column align-items-start">
                 <h4 class="my-2">{{ __('messages.about_us') }}</h4>
-                <ul>
-                    <li><a href="about1.html"><i class="bi bi-chevron-right me-2"></i>{{ __('messages.our_story') }}</a></li>
-                    <li><a href="team.html"><i class="bi bi-chevron-right me-2"></i>{{ __('messages.team_members') }}</a></li>
-                    <li><a href="about2.html"><i class="bi bi-chevron-right me-2"></i>{{ __('messages.careers') }}</a></li>
-                    <li><a href="contact.html"><i class="bi bi-chevron-right me-2"></i>{{ __('messages.contact') }}</a></li>
+                <ul class="mt-0">
+                    <li><a href="{{ url(app()->getLocale().'/about') }}"><i class="bi bi-chevron-right me-2"></i>{{ __('messages.about') }}</a></li>
+                    <li><a href="{{ url(app()->getLocale().'/team') }}"><i class="bi bi-chevron-right me-2"></i>{{ __('messages.team_members') }}</a></li>
+                    <li><a href="{{ url(app()->getLocale().'/contactus') }}"><i class="bi bi-chevron-right me-2"></i>{{ __('messages.contact') }}</a></li>
                 </ul>
             </div>
-            <div class="col-12 col-lg-3 col-md-6 mx-auto d-flex flex-column my-4">
+            <div class="col-12 col-lg-3 col-md-6 mx-auto my-4 d-flex flex-column align-items-start">
                 <h4 class="my-2">{{ __('messages.quick_links') }}</h4>
-                <ul>
-                    <li><a href="terms-of-use.html"><i class="bi bi-chevron-right me-2"></i>{{ __('messages.terms_of_use') }}</a></li>
-                    <li><a href="privacy-policy.html"><i class="bi bi-chevron-right me-2"></i>{{ __('messages.privacy_policy') }}</a></li>
-                    <li><a href="contact.html"><i class="bi bi-chevron-right me-2"></i>{{ __('messages.contact_support') }}</a></li>
-                    <li><a href="faqs.html"><i class="bi bi-chevron-right me-2"></i>{{ __('messages.faqs') }}</a></li>
+                <ul class="mt-0">
+                    @foreach($pages as $page)
+                    <li><a href="{{ url(app()->getLocale().'/page/'.$page->id) }}"><i class="bi bi-chevron-right me-2"></i>{{ $page->title }}</a></li>
+                    @endforeach
+                    <li><a href="{{ url(app()->getLocale().'/faqs') }}"><i class="bi bi-chevron-right me-2"></i>{{ __('messages.faqs') }}</a></li>
                 </ul>
             </div>
         </div>
@@ -170,8 +169,12 @@ Version: 2.0
                 </div>
                 <div class="col-12 col-md-6 d-flex justify-content-end">
                     <div>
-                        <a href="terms-of-use.html">{{ __('messages.terms_of_use') }}</a>
-                        | <a href="privacy-policy.html">{{ __('messages.privacy_policy') }}</a>
+                      @if(!empty($pages))
+                      @foreach($pages as $page)
+                        <a href="{{ url(app()->getLocale().'/page/'.$page->id) }}">{{ $page->title }}</a>
+                        @if(!$loop->last) | @endif                        
+                      @endforeach        
+                      @endif                
                     </div>
                 </div>
             </div>
