@@ -93,7 +93,9 @@
 
 
   <!-- ============== Start contact section ========== -->
-  <x-contact></x-contact>
+  @if(!empty($siteSettings))
+  <x-contact :siteSettings="$siteSettings"></x-contact>
+  @endif
   <!-- ============== end contact section ========== -->
 
 </x-app>

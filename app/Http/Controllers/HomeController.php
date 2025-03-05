@@ -23,6 +23,7 @@ class HomeController extends Controller
         $arr['team'] = Team::limit(3)->get();
         $arr['faqs'] = Faq::limit(8)->get();
         $arr['counters'] = Counter::all();
+        
 
         return view('website.home',$arr);
     }
@@ -65,6 +66,7 @@ class HomeController extends Controller
         return view('website.team', $arr);
     }
     public function contactus(){
+        
         return view('website.contactus');
     }
     public function do_logout(){

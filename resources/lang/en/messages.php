@@ -19,6 +19,7 @@ return [
     'last_update' => 'Last Update',
     'fa' => 'Frequently Asked',
     'q' => 'questions',
+    'email_sent' => 'Email sent successfully',
     
     // Footer translations
     'get_started' => 'Get Started',

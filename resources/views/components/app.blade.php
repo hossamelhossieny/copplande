@@ -122,10 +122,20 @@ Version: 2.0
                     <a href="{{ url('/'.app()->getLocale()) }}" class="logo dark">{{ __('messages.site_name') }}</a>
                     <p class="col-10">{{ __('messages.footer_desc') }}</p>
                     <div class="social d-flex">
-                      <a href="#"><i class="bi bi-facebook"></i></a>
-                      <a href="#"><i class="ms-3 bi bi-instagram"></i></a>
-                      <a href="#"><i class="ms-3 bi bi-twitter "></i></a>
-                      <a href="#"><i class="ms-3 bi bi-youtube"></i></a>
+                      @if(!empty($siteSettings))                      
+                        @if(!empty($siteSettings->facebook))
+                        <a href="{{ $siteSettings->facebook }}"><i class="bi bi-facebook"></i></a>
+                        @endif
+                        @if(!empty($siteSettings->twitter))
+                        <a href="{{ $siteSettings->twitter }}"><i class="ms-3 bi bi-twitter"></i></a> 
+                        @endif
+                        @if(!empty($siteSettings->instagram)) 
+                        <a href="{{ $siteSettings->instagram }}"><i class="ms-3 bi bi-instagram"></i></a>
+                        @endif
+                        @if(!empty($siteSettings->youtube))
+                        <a href="{{ $siteSettings->youtube }}"><i class="ms-3 bi bi-youtube"></i></a>
+                        @endif
+                      @endif
                     </div>
                 </div>
             </div>

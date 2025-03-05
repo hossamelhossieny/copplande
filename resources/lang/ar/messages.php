@@ -20,6 +20,7 @@ return [
     'fa' => 'الأسئلة',
     'q' => 'الشائعة',
     'what_we_offer' => 'ماذا نقدم لعملاؤنا ؟',
+    'email_sent' => 'تم ارسال البريد بنجاح',
     
     // Footer translations
     'get_started' => 'ابدأ الآن',

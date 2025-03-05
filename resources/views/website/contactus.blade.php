@@ -1,3 +1,5 @@
 <x-app>
-    <x-contact></x-contact>
+    @if(!empty($siteSettings))
+        <x-contact :siteSettings="$siteSettings"></x-contact>
+    @endif
 </x-app>
