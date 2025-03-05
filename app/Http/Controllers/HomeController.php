@@ -25,7 +25,7 @@ class HomeController extends Controller
         $arr['counters'] = Counter::all();
         
 
-        return view('website.home');
+        return view('website.home',$arr);
     }
 
     public function page($lang,$id){
