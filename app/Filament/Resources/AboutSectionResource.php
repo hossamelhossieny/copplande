@@ -78,4 +78,8 @@ class AboutSectionResource extends Resource
             'edit' => Pages\EditAboutSection::route('/{record}/edit'),
         ];
     }
+    public static function canCreate(): bool
+   {       
+    return static::getModel()::count() < 4;
+   }
 }

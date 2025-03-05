@@ -1,28 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    var form = document.querySelector("form");
-
-    form.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        var formData = new FormData(form);
-
-        fetch("contact.php", {
-            method: "POST",
-            body: formData
-        })
-            .then(response => response.text())
-            .then(result => {
-                if (result === "Success") {
-                    showNotification("Message sent successfully", "success");
-                } else {
-                    showNotification("Error: Unable to send message", "error");
-                }
-            })
-            .catch(error => {
-                console.error("Error:", error);
-                showNotification("Error: Something went wrong", "error");
-            });
-    });
+    
 
     function showNotification(message, type) {
         toastr.options = {

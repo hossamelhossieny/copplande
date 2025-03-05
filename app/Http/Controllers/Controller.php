@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page;
+use App\Models\SiteSetting;
 
 abstract class Controller
 {
@@ -10,6 +11,7 @@ abstract class Controller
     public function __construct()
     {
         $arr['pages'] = Page::all();
+        $arr['siteSettings'] = SiteSetting::first();
         view()->share($arr);
     }
 }

@@ -10,20 +10,20 @@
             <div class="d-flex gap-3 align-items-center justify-content-end my-3" data-aos="fade-right"
                 data-aos-delay="200">
                 <i class="bi bi-envelope-fill"></i>
-                <h5>example@example.com</h5>
+                <h5><a href="mailto:{{ $siteSettings->contact_email }}">{{ $siteSettings->contact_email }}</a></h5> 
             </div>
             <div class="d-flex gap-3 align-items-center my-3" data-aos="fade-right" data-aos-delay="250">                    
                 <i class="bi bi-telephone-fill"></i>
-                <h5>+123 456 6789</h5>
+                <h5><a href="tel:{{ $siteSettings->contact_phone }}">{{ $siteSettings->contact_phone  }}</a></h5>
             </div>
             <div class="d-flex gap-3 align-items-center my-3" data-aos="fade-right" data-aos-delay="300">
                 <i class="bi bi-map-fill"></i>
-                <h5>A108 Adam Street, New York, NY 535022</h5>                    
+                <h5>{{ $siteSettings->contact_address }}</h5>                    
             </div>
         </div>
         <div class="col-12 col-lg-6">
-            <form action="#" method="POST" class="main-form">
-                @csrf
+            <form action="{{ route('contact.submit', ['locale' => app()->getLocale()]) }}" method="POST" class="main-form">
+                @csrf             
                 <div class="col-12">
                     <div class="row g-4 mb-3">
                         <div class="col-lg-6 col-12" data-aos="fade-right" data-aos-delay="150">                            
@@ -47,6 +47,22 @@
                 <button type="submit" class="btn" data-aos="fade-up" data-aos-delay="300">
                     {{ __('messages.send') }}
                 </button>
+
+                @if(session('success'))
+                    <div class="alert alert-success mt-3">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                @if($errors->any())
+                    <div class="alert alert-danger mt-3">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             </form>
         </div>
     </div>
