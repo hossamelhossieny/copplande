@@ -17,7 +17,7 @@ class SetLocale
      * @return mixed
      */
     public function handle(Request $request, Closure $next)
-    {
+    {     
         if(in_array($request->segment(1), ['en', 'ar'])){
             App::setLocale($request->segment(1));
         }else{

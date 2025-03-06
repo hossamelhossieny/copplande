@@ -93,13 +93,57 @@ Version: 2.0
           <div class="d-flex ms-auto">
             <div class="dropdown ms-2">
               <button class="btn btn-secondary dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                  {{ __('language') }}
+                  {{ __('messages.language') }}
               </button>
               <ul class="dropdown-menu" aria-labelledby="languageDropdown">
                   <li><a class="dropdown-item" href="#" onclick="changeLanguage('en')">English</a></li>
                   <li><a class="dropdown-item" href="#" onclick="changeLanguage('ar')">العربية</a></li>
               </ul>
-          </div>
+            </div>
+
+            @auth
+                <!-- User Dropdown -->
+                <div class="dropdown ms-2">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ Auth::user()->name }}
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                        <li>
+                            <a class="dropdown-item" href="{{ route('profile.edit', ['locale' => app()->getLocale()]) }}">
+                                {{ __('messages.profile') }}
+                            </a>
+                        </li>
+                        <li>
+                            <form method="POST" action="{{ route('logout', ['locale' => app()->getLocale()]) }}">
+                                @csrf
+                                <a class="dropdown-item" href="{{ route('logout', ['locale' => app()->getLocale()]) }}"
+                                   onclick="event.preventDefault(); this.closest('form').submit();">
+                                    {{ __('messages.logout') }}
+                                </a>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            @else
+            <div class="dropdown ms-2">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="authDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                  {{ __('messages.login') }} {{ __('messages.or') }} {{ __('messages.register') }}
+                </button>
+                  <ul class="dropdown-menu" aria-labelledby="authDropdown">
+                    <li>
+                        <a href="{{ route('register', ['locale' => app()->getLocale()]) }}" class="dropdown-item">
+                            {{ __('messages.register') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('login', ['locale' => app()->getLocale()]) }}" class="dropdown-item">
+                          {{ __('messages.login') }}
+                      </a>
+                    </li>
+                  </ul>
+            </div>
+            @endauth
+
             <button id="mode-toggle" class="btn-light-mode switch-button"><i id="mode-icon"
                 class="bi bi-moon-fill"></i></button>
           </div>

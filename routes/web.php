@@ -1,11 +1,12 @@
 <?php
-use App\Http\Controllers\AuthController;
+
+use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LanguageController;
-use Illuminate\Support\Facades\Route;
 
-Route::redirect('/', '/en');
+Route::redirect('/', '/en')->name('home');
 
 Route::get('lang', [LanguageController::class, 'change'])->name("change.lang");
 
@@ -21,14 +22,6 @@ Route::get('lang', [LanguageController::class, 'change'])->name("change.lang");
         Route::get('{lang}/page/{id}',[HomeController::class, 'page'])->name('page');
     
         Route::post('{lang}/contact', [ContactController::class, 'submit'])->name('contact.submit');
-    
-    
-
-// Auth routes outside the locale group
-Route::view('/login', 'auth.login')->name('login');
-Route::post('/login', [AuthController::class, 'login']);
-Route::get('register', [AuthController::class, 'showRegistrationForm'])->name('register');
-Route::post('register', [AuthController::class, 'register']);
 
 
-
+require __DIR__.'/auth.php';
