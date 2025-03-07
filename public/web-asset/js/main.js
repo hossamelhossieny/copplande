@@ -84,6 +84,30 @@ if (modeToggle) {
     modeToggle.addEventListener('click', toggleDarkMode);
 }
 
+document.getElementById('mode-toggle').addEventListener('click', function() {
+    document.body.classList.toggle('light-mode');
+    const icon = document.getElementById('mode-icon');
+    
+    if (document.body.classList.contains('light-mode')) {
+        icon.classList.remove('bi-moon-fill');
+        icon.classList.add('bi-sun-fill');
+        localStorage.setItem('theme', 'light');
+    } else {
+        icon.classList.remove('bi-sun-fill');
+        icon.classList.add('bi-moon-fill');
+        localStorage.setItem('theme', 'dark');
+    }
+});
+
+// Check theme on page load
+document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('theme') === 'light') {
+        document.body.classList.add('light-mode');
+        document.getElementById('mode-icon').classList.remove('bi-moon-fill');
+        document.getElementById('mode-icon').classList.add('bi-sun-fill');
+    }
+});
+
 //   ------------- numbers counter -----------------//
 
 $(document).ready(function () {
