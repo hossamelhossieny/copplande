@@ -20,6 +20,7 @@ Route::get('lang', [LanguageController::class, 'change'])->name("change.lang");
         Route::get('{lang}/contactus',[HomeController::class, 'contactus'])->name('contactus');
         Route::get('{lang}/team',[HomeController::class, 'team'])->name('contactus');
         Route::get('{lang}/page/{id}',[HomeController::class, 'page'])->name('page');
+        Route::get('{lang}/faqs',[HomeController::class, 'faqs'])->name('faqs');
     
         Route::post('{lang}/contact', [ContactController::class, 'submit'])->name('contact.submit');
 

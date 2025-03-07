@@ -65,6 +65,12 @@ class HomeController extends Controller
         
         return view('website.team', $arr);
     }
+    public function faqs(){
+        $arr['faqs'] = Faq::get();
+        return view('website.faqs',$arr);
+    }
+
+
     public function contactus(){
         
         return view('website.contactus');
