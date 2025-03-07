@@ -758,19 +758,18 @@ img {
 }
 
 /* ===== end 404 page ====== */
-
 .theme-dark-logo {
-  display: none;
+  display: block;
 }
 
 .theme-light-logo {
-  display: block;
+  display: none;
 }
 
 body.light-mode .theme-dark-logo {
-  display: block;
+  display: none;
 }
 
 body.light-mode .theme-light-logo {
-  display: none;
+  display: block;
 }
