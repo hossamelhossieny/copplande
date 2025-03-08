@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AboutSection;
 use App\Models\Counter;
 use App\Models\Faq;
+use App\Models\Inquiry;
 use App\Models\Page;
 use App\Models\Project;
 use App\Models\Service;
@@ -36,7 +37,7 @@ class HomeController extends Controller
 
     public function about(){
 
-        $aboutSection = AboutSection::all();
+        $aboutSection = AboutSection::all();        
         return view('website.about', compact('aboutSection'));
     }
   
@@ -47,6 +48,7 @@ class HomeController extends Controller
     }
     public function one_service($lang,$id){
         $arr['service'] = Service::where('id',$id)->with(['subServices','projects'])->first();
+        $arr['userInquiries'] = Inquiry::with('replies')->where('customer_id', Auth::guard('customer')->id())->where("service_id",$id)->get();
         return view('website.service',$arr);
     }
     public function projects(){
