@@ -50,7 +50,10 @@ class TaskResource extends Resource
                     ])
                     ->default(0)                    
                     ->required()
-                    ->visible(fn ($context) => $context === 'edit'),
+                    ->visible(fn ($context, $record) => 
+                        $context === 'edit' && 
+                        $record?->to_user === auth()->id()
+                    ),
                
                 Select::make('to_user')
                     ->label('To User')
@@ -70,9 +73,17 @@ class TaskResource extends Resource
                 TextColumn::make('toUser.name')
                     ->label('To User')
                     ->searchable(),
-                TextColumn::make('completed')
+                    TextColumn::make('completed')
                     ->label('Completed')
-                    ->searchable(),
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        '1' => 'success',
+                        '0' => 'danger',
+                    })
+                    ->formatStateUsing(fn (string $state): string => match ($state) {
+                        '1' => 'Yes',
+                        '0' => 'No',
+                    }),
             ])
             ->filters([
                 //

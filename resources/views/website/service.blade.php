@@ -42,7 +42,114 @@
 
   <div class="services my-4 py-4">
     <div class="container">
-        <h1 class="title mb-2 col-lg-5 col-12 w-100" data-aos="fade-up">{{ __('messages.what_we_offer') }}</h1>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="title mb-2 col-lg-5 col-12" data-aos="fade-up">{{ __('messages.what_we_offer') }}</h1>
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#inquiryModal" data-aos="fade-up">
+                {{ __('messages.inquiry') }}
+            </button>
+        </div>
+
+        <!-- Inquiry Modal -->
+        <div class="modal fade" id="inquiryModal" tabindex="-1" aria-labelledby="inquiryModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content contact">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="inquiryModalLabel">{{ __('messages.inquiries') }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        @auth('customer')
+                            <ul class="nav nav-tabs mb-3" id="inquiryTabs" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="my-inquiries-tab" data-bs-toggle="tab" 
+                                        data-bs-target="#my-inquiries" type="button" role="tab">
+                                        {{ __('messages.my_inquiries') }}
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="new-inquiry-tab" data-bs-toggle="tab" 
+                                        data-bs-target="#new-inquiry" type="button" role="tab">
+                                        {{ __('messages.new_inquiry') }}
+                                    </button>
+                                </li>
+                            </ul>
+                            
+                            <div class="tab-content" id="inquiryTabsContent">
+                                <!-- My Inquiries Tab -->
+                                <div class="tab-pane fade show active" id="my-inquiries" role="tabpanel">
+                                    <div class="list-group">
+                                        @forelse($userInquiries as $inquiry)
+                                            <div class="list-group-item list-group-item-action mb-2">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <h6 class="mb-1">{{ $inquiry->created_at->format('d M Y') }}</h6>
+                                                    <small>{{ $inquiry->status }}</small>
+                                                </div>
+                                                <p class="mb-1 inquiry-title">{{ $inquiry->inquiry }}</p>
+                                                
+                                                <!-- Replies Section -->
+                                                <div class="replies mt-3">
+                                                    @foreach($inquiry->replies as $reply)
+                                                        <div class="reply mb-2 p-2 {{ $reply->from === 'admin' ? 'bg-light text-end' : 'bg-primary-subtle' }}">
+                                                            <small class="d-block text-muted">{{ $reply->created_at->format('d M Y H:i') }}</small>
+                                                            {{ $reply->reply }}
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+
+                                                <!-- Reply Form -->
+                                                <form action="{{ url(app()->getLocale().'/inquiry/'.$inquiry->id.'/reply')}}" 
+                                                    method="POST" class="mt-3">
+                                                    @csrf
+                                                    <div class="input-group">
+                                                        <input type="text" name="reply" class="form-control" 
+                                                            placeholder="{{ __('messages.write_reply') }}">
+                                                        <button class="btn" type="submit">
+                                                            {{ __('messages.reply') }}
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        @empty
+                                            <p class="text-center">{{ __('messages.no_inquiries') }}</p>
+                                        @endforelse
+                                    </div>
+                                </div>
+
+                                <!-- New Inquiry Tab -->
+                                <div class="tab-pane fade" id="new-inquiry" role="tabpanel">
+                                    <form action="{{ route('inquiry.store', ['locale' => app()->getLocale()]) }}" method="POST" class="main-form">
+                                        @csrf
+                                        <input type="hidden" name="service_id" value="{{ $service->id }}">
+                                        <div class="mb-3">
+                                            <textarea 
+                                                name="inquiry" 
+                                                class="text-input @error('inquiry') is-invalid @enderror" 
+                                                rows="5" 
+                                                placeholder="{{ __('messages.inquiry_message') }}"
+                                                required
+                                            ></textarea>
+                                            @error('inquiry')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="d-flex justify-content-end">
+                                            <button type="submit" class="btn">{{ __('messages.send') }}</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        @else
+                            <div class="text-center">
+                                <p>{{ __('messages.login_required') }}</p>
+                                <a href="{{ route('login', ['locale' => app()->getLocale()]) }}" class="btn">
+                                    {{ __('messages.login') }}
+                                </a>
+                            </div>
+                        @endauth
+                    </div>
+                </div>
+            </div>
+        </div>
 
         @foreach ($service['subServices'] as $key=>$serv)
         @if($key % 2 != 0)

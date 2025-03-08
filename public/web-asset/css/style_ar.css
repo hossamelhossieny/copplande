@@ -760,10 +760,14 @@ img {
 /* ===== end 404 page ====== */
 
 .theme-dark-logo {
+  width: 250px;
+  height: 62px;
   display: none;
 }
 
 .theme-light-logo {
+  width: 250px;
+  height: 62px;
   display: block;
 }
 

@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->integer('inquiry_id');
             $table->text('reply');
-            $table->integer('user_id');
-            $table->integer('customer_id');
+            $table->integer('user_id')->nullable();
+            $table->integer('customer_id')->nullable();
             $table->string('from')->default('admin');
             $table->timestamps();
         });

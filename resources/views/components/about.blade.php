@@ -1,4 +1,4 @@
-<div class="about my-4 py-4" id="about">
+<div class="about" id="about">
     <div class="container mt-5 pt-5">
       <h1 class="title col-12" data-aos="fade-right" data-aos-delay="100">{{ __('messages.about') }}</h1>
       <div class="row g-4" data-aos="fade-up" data-aos-delay="150">

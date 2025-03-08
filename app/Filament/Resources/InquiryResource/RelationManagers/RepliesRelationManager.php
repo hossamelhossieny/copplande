@@ -20,7 +20,7 @@ class RepliesRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('reply')
+                Forms\Components\Textarea::make('reply')
                     ->required()
                     ->maxLength(255),
             ]);
