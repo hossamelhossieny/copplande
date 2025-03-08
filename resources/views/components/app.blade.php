@@ -65,8 +65,8 @@ Version: 2.0
         {{-- <a class="logo" href="{{ url('/') }}">Copplande</a> --}}
         <!-- if you want to use image in your logo uncomment the following line -->
         <a class="navbar-brand" href="{{ url('/') }}">
-            <img src="{{asset('web-asset/images')}}/logo-on-dark.png" class="logo theme-dark-logo" alt="LOGO">
-            <img src="{{asset('web-asset/images')}}/logo-on-light.png" class="logo theme-light-logo" alt="LOGO">
+            <img src="{{asset('web-asset/images')}}/logo-on-dark.png" class="logo theme-dark-logo" style="border-radius: 0px !important" alt="LOGO">
+            <img src="{{asset('web-asset/images')}}/logo-on-light.png" class="logo theme-light-logo" style="border-radius: 0px !important" alt="LOGO">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
