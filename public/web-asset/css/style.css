@@ -764,21 +764,21 @@ body.dark-mode .navbar ul .dropdown-menu li a {
 .theme-dark-logo {
     width: 250px;
     height: 62px;
-    display: none;
+    display: block; /* Show by default in dark mode (dark theme) */
 }
 
 .theme-light-logo {  
-  width: 250px;
-  height: 62px;
-    display: block;
+    width: 250px;
+    height: 62px;
+    display: none; /* Hide by default in dark mode */
 }
 
 body.light-mode .theme-dark-logo {
-    display: block;
+    display: none; /* Hide in light mode */
 }
 
 body.light-mode .theme-light-logo {
-    display: none;
+    display: block; /* Show in light mode */
 }
 
 .inquiry-title{

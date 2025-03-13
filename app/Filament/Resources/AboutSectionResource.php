@@ -7,6 +7,7 @@ use App\Filament\Resources\AboutSectionResource\RelationManagers;
 use App\Models\AboutSection;
 use Filament\Forms;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -31,10 +32,10 @@ class AboutSectionResource extends Resource
                 TextInput::make('title_ar')
                     ->label('Title (Arabic)')
                     ->required(),
-                TextInput::make('desc_en')
+                Textarea::make('desc_en')
                     ->label('Description (English)')
                     ->required(),
-                TextInput::make('desc_ar')
+                Textarea::make('desc_ar')
                     ->label('Description (Arabic)')
                     ->required(),
             ]);
